@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Roles\Role;
-use App\Models\Roles\RoleUser;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -56,12 +55,7 @@ class RegisterController extends Controller
         $user->image = $imagePath;
         $user->save();
 
-        $role = Role::where('label', 'admin')->first();
-
-        RoleUser::create([
-            'role_id' => $role->id,
-            'user_id' => $user->id
-        ]);
+        $user->assignRole('usuario');
 
         add_user_log([
             'title'        => "registered " . $user->name,
@@ -72,6 +66,6 @@ class RegisterController extends Controller
 
         Auth::loginUsingId($user->id);
 
-        return redirect('admin');
+        return redirect('/');
     }
 }
