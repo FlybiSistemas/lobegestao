@@ -18,7 +18,7 @@
     </div>
 
     <div class="overflow-x-scroll shadow-md">
-        <table>
+        <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border">
             <thead>
                 <tr>
                     <th><a href="#" wire:click.prevent="sortBy('nome')">Nome</a></th>
@@ -28,16 +28,18 @@
             <tbody>
                 @foreach ($this->departamentos() as $obj)
                     <tr>
-                        <td class="flex">
-                            <div class="pl-1 pt-1">{{ $obj->nome }}</div>
+                        <td class="p-2">
+                            {{ $obj->nome }}
                         </td>
-                        <td>
+                        <td class="p-2">
                             <div class="flex space-x-2">
-                                <a href="{{ route('departamentos.edit', ['departamento' => $obj->id]) }}">Edit</a>
+                                <a href="{{ route('departamentos.edit', ['departamento' => $obj->id]) }}"><i
+                                        class="fa fa-edit text-lg"></i></a>
 
                                 <x-modal>
                                     <x-slot name="trigger">
-                                        <a href="#" @click="on = true">Excluir</a>
+                                        <a href="#" @click="on = true"><i
+                                                class="fa fa-times text-red-500 ml-2 text-lg"></i></a>
                                     </x-slot>
 
                                     <x-slot name="title">Confirmar Exclusão</x-slot>

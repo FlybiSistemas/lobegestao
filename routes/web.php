@@ -20,15 +20,15 @@ use App\Http\Livewire\Atividades\Atividades;
 use App\Http\Livewire\Atividades\EditAtividade;
 use App\Http\Livewire\Departamentos\EditDepartamento;
 use App\Http\Livewire\Departamentos\Departamentos;
+use App\Http\Livewire\Empresas\CreateEmpresa;
 use App\Http\Livewire\Empresas\EditEmpresa;
 use App\Http\Livewire\Empresas\Empresas;
 use App\Http\Livewire\Empresas\ShowEmpresa;
 use App\Http\Livewire\Grupos\EditGrupo;
 use App\Http\Livewire\Grupos\Grupos;
-use App\Http\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', Welcome::class);
+Route::get('/', [LoginController::class, 'showLoginForm']);
 
 //unauthenticated
 Route::middleware(['web', 'guest'])->group(function () {
@@ -49,7 +49,8 @@ Route::middleware(['web', 'guest'])->group(function () {
 });
 
 //authenticated
-Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->prefix('admin')->group(function () {
+// Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->prefix('admin')->group(function () {
+Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     Route::get('2fa', [TwoFaController::class, 'index'])->name('2fa');
     Route::post('2fa', [TwoFaController::class, 'update'])->name('2fa.update');
     Route::get('2fa-setup', [TwoFaController::class, 'setup'])->name('2fa-setup');
@@ -66,7 +67,10 @@ Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->prefix('a
     Route::get('users/{user}/edit', EditUser::class)->name('admin.users.edit');
     Route::get('users/{user}', ShowUser::class)->name('admin.users.show');
 });
-Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->group(function () {
+
+// Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/', Dashboard::class)->name('dashboard');
     Route::get('grupos', Grupos::class)->name('grupos.index');
     Route::get('grupos/{grupo}/edit', EditGrupo::class)->name('grupos.edit');
 
@@ -75,6 +79,7 @@ Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->group(fun
 
     Route::get('empresas', Empresas::class)->name('empresas.index');
     Route::get('empresas/{empresa}/edit', EditEmpresa::class)->name('empresas.edit');
+    Route::get('empresas/create', CreateEmpresa::class)->name('empresas.create');
     Route::get('empresas/{empresa}', ShowEmpresa::class)->name('empresas.show');
 
     Route::get('atividades', Atividades::class)->name('atividades.index');
@@ -82,7 +87,8 @@ Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware'])->group(fun
 });
 
 //Admin only routes
-Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware', 'role:admin'])->prefix('admin')->group(function () {
+// Route::middleware(['web', 'auth', 'activeUser', 'IpCheckMiddleware', 'role:admin'])->prefix('admin')->group(function () {
+Route::middleware(['web', 'auth'])->prefix('admin')->group(function () {
     Route::get('settings/system-settings', Settings::class)->name('admin.settings');
     Route::get('settings/roles', Roles::class)->name('admin.settings.roles.index');
     Route::get('settings/roles/{role}/edit', Edit::class)->name('admin.settings.roles.edit');

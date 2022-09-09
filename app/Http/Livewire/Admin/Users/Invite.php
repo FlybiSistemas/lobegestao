@@ -6,13 +6,12 @@ namespace App\Http\Livewire\Admin\Users;
 
 use App\Http\Livewire\Base;
 use App\Mail\Users\SendInviteMail;
-use App\Models\Roles\Role;
-use App\Models\Roles\RoleUser;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Models\Role;
 
 use function add_user_log;
 use function auth;
@@ -50,9 +49,8 @@ class Invite extends Base
 
     public function render(): View
     {
-        $roles = Role::orderby('name')->get();
-
-        return view('livewire.admin.users.invite', compact('roles'));
+        $roles = Role::all();
+        return view('livewire.admin.users.invite', ['roles' => $roles]);
     }
 
     public function store(): void
@@ -72,7 +70,7 @@ class Invite extends Base
 
         //generate image
         $name      = get_initials($user->name);
-        $id        = $user->id.'.png';
+        $id        = $user->id . '.png';
         $path      = 'users/';
         $imagePath = create_avatar($name, $id, $path);
 
@@ -80,17 +78,12 @@ class Invite extends Base
         $user->image = $imagePath;
         $user->save();
 
-        foreach ($this->rolesSelected as $role_id) {
-            RoleUser::create([
-                'role_id' => $role_id,
-                'user_id' => $user->id
-            ]);
-        }
+        $user->assingRole($this->rolesSelected);
 
         Mail::send(new SendInviteMail($user));
 
         add_user_log([
-            'title'        => "invited ".$user->name,
+            'title'        => "invited " . $user->name,
             'reference_id' => $user->id,
             'section'      => 'Auth',
             'type'         => 'Join'

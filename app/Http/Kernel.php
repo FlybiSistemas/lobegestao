@@ -2,9 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\ActiveUser;
-use App\Http\Middleware\IpCheckMiddleware;
-use App\Http\Middleware\Role;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,8 +62,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'activeUser' => ActiveUser::class,
-        'role' => Role::class,
-        'IpCheckMiddleware' => IpCheckMiddleware::class,
+        // 'activeUser' => ActiveUser::class,
+        // 'IpCheckMiddleware' => IpCheckMiddleware::class,
     ];
 }

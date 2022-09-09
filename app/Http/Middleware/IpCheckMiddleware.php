@@ -25,7 +25,7 @@ class IpCheckMiddleware
             if ($ips !== null) {
                 $ips = json_decode($ips, true);
 
-                foreach($ips as $row) {
+                foreach ($ips as $row) {
                     $approved[] = $row['ip'];
                 }
 
@@ -38,7 +38,7 @@ class IpCheckMiddleware
                 }
             }
         }
-        
+
         return $next($request);
     }
 }

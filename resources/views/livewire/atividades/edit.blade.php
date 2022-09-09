@@ -1,10 +1,8 @@
 @section('title', 'Atualizar atividades')
-<div>
-    <div class="mb-5">
-        <a href="{{ route('atividades.index') }}">Atividades</a>
-        <span class="dark:text-gray-200">- Editar Atividade</span>
-    </div>
-    <div class="float-right"><span class="text-red-600">*</span> <span class="dark:text-gray-200"> = required</span>
+<div class="mx-auto max-w-screen-lg">
+    <div class="mb-5 flex items-start justify-content-start">
+        <a href="{{ route('atividades.index') }}" class="py-3 mr-5"><i class="fa fa-arrow-left"></i> Voltar</a>
+        <h3>| Alterar Atividade</h3>
     </div>
     <div class="clearfix"></div>
     <x-form wire:submit.prevent="update" method="put">

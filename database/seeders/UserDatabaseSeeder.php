@@ -15,21 +15,13 @@ class UserDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        Permission::firstOrCreate(['name' => 'view_users', 'label' => 'View Users', 'module' => 'Users']);
-        Permission::firstOrCreate(['name' => 'view_users_profiles', 'label' => 'View Users Profiles', 'module' => 'Users']);
-        Permission::firstOrCreate(['name' => 'view_users_activity', 'label' => 'View Users Activity', 'module' => 'Users']);
-        Permission::firstOrCreate(['name' => 'add_users', 'label' => 'Add Users', 'module' => 'Users']);
-        Permission::firstOrCreate(['name' => 'edit_users', 'label' => 'Edit Users', 'module' => 'Users']);
-        Permission::firstOrCreate(['name' => 'edit_own_account', 'label' => 'Edit Own Account', 'module' => 'Users']);
-        Permission::firstOrCreate(['name' => 'delete_users', 'label' => 'Delete Users', 'module' => 'Users']);
-
         //create developer uncomment to use when seeding
         /*
-        $user = User::firstOrCreate(['email' => 'user@domain.com'], [
-            'name'                 => 'Username',
-            'slug'                 => 'username',
-            'email'                => 'user@domain.com',
-            'password'             => bcrypt('ChangeMe!'),
+        $user = User::firstOrCreate(['email' => 'usuario@lobeconsultoria.com.br'], [
+            'name'                 => 'Usuário',
+            'slug'                 => 'usuario',
+            'email'                => 'usuario@lobeconsultoria.com.br',
+            'password'             => bcrypt('usuario@1008'),
             'is_active'            => 1,
             'is_office_login_only' => 0
         ]);

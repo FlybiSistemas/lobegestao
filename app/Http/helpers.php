@@ -1,96 +1,9 @@
 <?php
 
 use App\Models\AuditTrail;
-use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
-if (! function_exists('abort_if_cannot')) {
-    function abort_if_cannot(string $action, int $code = 401)
-    {
-        if (cannot($action)) {
-            $message = "You do not have permissions to ".strtolower($action);
-            abort($code, $message);
-        }
-    }
-}
-
-if (! function_exists('abort_permission')) {
-    function abort_permission(string $action, int $code = 401)
-    {
-        $message = "You do not have permissions to ".strtolower($action);
-
-        if (App::runningUnitTests()) {
-            abort(response($message, $code));
-        }
-
-        echo view('errors.'.$code, compact('message'));
-        exit;
-    }
-}
-
-if (! function_exists('can')) {
-    function can(string $action): bool
-    {
-        if (! auth()->check()) {
-            return false;
-        }
-
-        if (is_admin()) {
-            return true;
-        }
-
-        return Gate::allows($action);
-    }
-}
-
-if (! function_exists('cannot')) {
-    function cannot(string $action): bool
-    {
-        if (! auth()->check()) {
-            return false;
-        }
-
-        if (is_admin()) {
-            return false;
-        }
-
-        return Gate::denies($action);
-    }
-}
-
-if (! function_exists('user')) {
-    function user(): User|Authenticatable|null
-    {
-        return auth()->user();
-    }
-}
-
-if (! function_exists('is_admin')) {
-    function is_admin(): bool
-    {
-        if (user() === null) {
-            return false;
-        }
-
-        return user()?->hasRole('admin');
-    }
-}
-
-if (! function_exists('has_role')) {
-    function has_role(string $roleName): bool
-    {
-        if (user() === null) {
-            return false;
-        }
-
-        return user()?->hasRole($roleName);
-    }
-}
-
-if (! function_exists('add_user_log')) {
+if (!function_exists('add_user_log')) {
     function add_user_log($data)
     {
         AuditTrail::create([
@@ -104,7 +17,7 @@ if (! function_exists('add_user_log')) {
     }
 }
 
-if (! function_exists('get_initials')) {
+if (!function_exists('get_initials')) {
     function get_initials(string $name): ?string
     {
         $words    = explode(" ", $name);
@@ -117,35 +30,35 @@ if (! function_exists('get_initials')) {
     }
 }
 
-if (! function_exists('create_avatar')) {
+if (!function_exists('create_avatar')) {
     function create_avatar(string $name, string $filename, string $path): string
     {
         $avatar = new LasseRafn\InitialAvatarGenerator\InitialAvatar();
         $source = $avatar->background('#000')->color('#fff')->name($name)->generate()->stream();
 
-        Storage::disk('public')->put($path.$filename, $source);
+        Storage::disk('public')->put($path . $filename, $source);
 
-        return $path.$filename;
+        return $path . $filename;
     }
 }
 
-if (! function_exists('vat')) {
+if (!function_exists('vat')) {
     function vat(float $price, int $vat): string
     {
         $total = $price * ($vat / 100) + $price;
-        return number_format($total/100, 2);
+        return number_format($total / 100, 2);
     }
 }
 
-if (! function_exists('size_readable')) {
+if (!function_exists('size_readable')) {
     function size_readable(int $bytes): string
     {
         $i = floor(log($bytes, 1024));
-        return round($bytes / (1024 ** $i), [0, 0, 2, 2, 3][$i]).['B', 'kB', 'MB', 'GB', 'TB'][$i];
+        return round($bytes / (1024 ** $i), [0, 0, 2, 2, 3][$i]) . ['B', 'kB', 'MB', 'GB', 'TB'][$i];
     }
 }
 
-if (! function_exists('in_array_r')) {
+if (!function_exists('in_array_r')) {
     function in_array_r($needle, $haystack, $strict = false): bool
     {
         foreach ($haystack as $item) {
@@ -158,7 +71,7 @@ if (! function_exists('in_array_r')) {
     }
 }
 
-if (! function_exists('storage_exists')) {
+if (!function_exists('storage_exists')) {
     function storage_exists($file, $disk = 'public'): bool
     {
         if ($file == '') {
@@ -169,11 +82,9 @@ if (! function_exists('storage_exists')) {
     }
 }
 
-if (! function_exists('storage_url')) {
+if (!function_exists('storage_url')) {
     function storage_url($file, $disk = 'public'): string
     {
         return Storage::url($file);
     }
 }
-
-

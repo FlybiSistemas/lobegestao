@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Roles\Role;
+use Spatie\Permission\Models\Role;
 
 class RolesDatabaseSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class RolesDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        Role::firstOrCreate(['name' => 'admin', 'label' => 'Admin']);
-        Role::firstOrCreate(['name' => 'user', 'label' => 'User']);
+        Role::firstOrCreate(['name' => 'admin']);
+        Role::firstOrCreate(['name' => 'usuario']);
     }
 }

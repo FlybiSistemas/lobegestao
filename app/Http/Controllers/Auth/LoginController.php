@@ -17,7 +17,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected string $redirectTo = '/admin';
+    protected string $redirectTo = '/dashboard';
 
     public function __construct()
     {
@@ -119,7 +119,7 @@ class LoginController extends Controller
         AuditTrail::create([
             'user_id'      => $id,
             'reference_id' => $id,
-            'title'        => "Login Failed - ".$request->input($this->username()),
+            'title'        => "Login Failed - " . $request->input($this->username()),
             'section'      => 'Auth',
             'type'         => 'login'
         ]);
@@ -148,7 +148,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect()->route('admin');
+        return redirect()->route('dashboard');
     }
 
     protected function guard()

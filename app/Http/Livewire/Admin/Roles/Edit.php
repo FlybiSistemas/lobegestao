@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Admin\Roles;
 
 use App\Http\Livewire\Base;
-use App\Models\Roles\Permission;
-use App\Models\Roles\Role;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 use function add_user_log;
 use function flash;
@@ -20,18 +20,18 @@ use function view;
 class Edit extends Base
 {
     public ?Role $role       = null;
-    public       $label      = '';
+    public       $name      = '';
     public       $permission = [];
 
     protected function rules(): array
     {
         return [
-            'label' => 'required|string|unique:roles,label,'.$this->role->id
+            'name' => 'required|string|unique:roles,name,' . $this->role->id
         ];
     }
 
     protected array $messages = [
-        'label.required' => 'Role is required'
+        'name.required' => 'Role is required'
     ];
 
     /**
@@ -44,7 +44,7 @@ class Edit extends Base
 
     public function mount(): void
     {
-        $this->label = $this->role->label ?? '';
+        $this->name = $this->role->name ?? '';
 
         if (isset($this->role->permissions)) {
             foreach ($this->role->permissions as $perm) {
@@ -55,16 +55,15 @@ class Edit extends Base
 
     public function render(): View
     {
-        $modules = Permission::select('module')->distinct()->orderBy('module')->pluck('module');
-        return view('livewire.admin.roles.edit', compact('modules'));
+        $permissions = Permission::all();
+        return view('livewire.admin.roles.edit', ['permissions' => $permissions]);
     }
 
     public function update(): Redirector|RedirectResponse
     {
         $this->validate();
 
-        $this->role->label = $this->label;
-        $this->role->name  = strtolower(str_replace(' ', '_', $this->label));
+        $this->role->name  = strtolower(str_replace(' ', '_', $this->name));
 
         //sync given permissions
         $permissions = $this->permission;
@@ -76,14 +75,14 @@ class Edit extends Base
         $this->role->save();
 
         add_user_log([
-            'title'        => 'updated role '.$this->label,
+            'title'        => 'updated role ' . $this->name,
             'link'         => route('admin.settings.roles.edit', ['role' => $this->role->id]),
             'reference_id' => $this->role->id,
             'section'      => 'Roles',
             'type'         => 'Update'
         ]);
 
-        flash('Role updated')->success();
+        flash('Grupo do Usuário Atualizado')->success();
 
         return redirect()->route('admin.settings.roles.index');
     }

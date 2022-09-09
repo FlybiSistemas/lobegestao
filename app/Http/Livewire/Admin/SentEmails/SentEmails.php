@@ -13,10 +13,6 @@ use Livewire\WithPagination;
 use Maatwebsite\Excel\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-use function abort_if_cannot;
-use function now;
-use function view;
-
 class SentEmails extends Base
 {
     use WithPagination;
@@ -40,8 +36,6 @@ class SentEmails extends Base
 
     public function render(): View
     {
-        abort_if_cannot('view_sent_emails');
-
         return view('livewire.admin.sent-emails.index');
     }
 
@@ -55,19 +49,19 @@ class SentEmails extends Base
         $query = $this->builder();
 
         if ($this->to) {
-            $query->where('to', 'like', '%'.$this->to.'%');
+            $query->where('to', 'like', '%' . $this->to . '%');
         }
 
         if ($this->cc) {
-            $query->where('cc', 'like', '%'.$this->cc.'%');
+            $query->where('cc', 'like', '%' . $this->cc . '%');
         }
 
         if ($this->bcc) {
-            $query->where('bcc', 'like', '%'.$this->bcc.'%');
+            $query->where('bcc', 'like', '%' . $this->bcc . '%');
         }
 
         if ($this->subject) {
-            $query->where('subject', 'like', '%'.$this->subject.'%');
+            $query->where('subject', 'like', '%' . $this->subject . '%');
         }
 
         if ($this->created_at) {
@@ -95,17 +89,21 @@ class SentEmails extends Base
         }
 
         if ($format === 'xlsx') {
-            return (new SentEmailsExport($params))->download("sent-emails-".$timestamp->format('d-m-Y-h-i-s').".xlsx");
+            return (new SentEmailsExport($params))->download("sent-emails-" . $timestamp->format('d-m-Y-h-i-s') . ".xlsx");
         }
 
         if ($format === 'csv') {
-            return (new SentEmailsExport($params))->download("sent-emails-".$timestamp->format('d-m-Y-h-i-s').".csv",
-                Excel::CSV);
+            return (new SentEmailsExport($params))->download(
+                "sent-emails-" . $timestamp->format('d-m-Y-h-i-s') . ".csv",
+                Excel::CSV
+            );
         }
 
         if ($format === 'pdf') {
-            return (new SentEmailsExport($params))->download("sent-emails-".$timestamp->format('d-m-Y-h-i-s').".pdf",
-                Excel::DOMPDF);
+            return (new SentEmailsExport($params))->download(
+                "sent-emails-" . $timestamp->format('d-m-Y-h-i-s') . ".pdf",
+                Excel::DOMPDF
+            );
         }
 
         return true;

@@ -1,18 +1,12 @@
 @section('title', 'Atualizar Empresa')
-<div>
-    <div class="mb-5">
-        <a href="{{ route('empresas.index') }}">Empresas</a>
-        <span class="dark:text-gray-200">- Editar Empresa</span>
-    </div>
-    <div class="float-right"><span class="text-red-600">*</span> <span class="dark:text-gray-200"> = required</span>
+<div class="mx-auto max-w-screen-lg">
+    <div class="mb-5 flex items-start justify-content-start">
+        <a href="{{ route('empresas.index') }}" class="py-3 mr-5"><i class="fa fa-arrow-left"></i> Voltar</a>
+        <h3>| Nova Empresa</h3>
     </div>
     <div class="clearfix"></div>
     <x-form wire:submit.prevent="update" method="put">
-        <div class="row">
-            <div class="md:w-1/2">
-                <x-form.input wire:model="nome" label='Nome' name='nome' required></x-form.input>
-            </div>
-        </div>
+        @include('livewire.empresas.fields')
         <x-form.submit>Atualizar</x-form.submit>
     </x-form>
 </div>

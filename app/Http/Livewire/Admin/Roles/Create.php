@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Admin\Roles;
 
 use App\Http\Livewire\Base;
-use App\Models\Roles\Role;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Models\Role;
 
 use function add_user_log;
 use function flash;
@@ -21,7 +21,7 @@ class Create extends Base
     public $role = '';
 
     protected array $rules = [
-        'role' => 'required|string|unique:roles,label'
+        'role' => 'required|string|unique:roles,name'
     ];
 
     protected array $messages = [
@@ -46,14 +46,14 @@ class Create extends Base
         $this->validate();
 
         $role = Role::create([
-            'label' => $this->role,
+            'guard_name' => 'web',
             'name'  => strtolower(str_replace(' ', '_', $this->role))
         ]);
 
-        flash('Role created')->success();
+        flash('Grupo Criado')->success();
 
         add_user_log([
-            'title'        => 'created role '.$this->role,
+            'title'        => 'created role ' . $this->role,
             'link'         => route('admin.settings.roles.edit', ['role' => $role->id]),
             'reference_id' => $role->id,
             'section'      => 'Roles',

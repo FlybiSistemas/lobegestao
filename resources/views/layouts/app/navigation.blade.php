@@ -29,32 +29,42 @@
     </a>
 </div>
 
-@if (can('view_dashboard'))
-    <x-nav.link route="admin" icon="fas fa-home">Dashboard</x-nav.link>
-@endif
-
-@if (can('view_audit_trails') || can('view_sent_emails'))
-    <x-nav.group label="Settings" route="admin.settings" icon="fas fa-cogs">
-        @if (can('view_audit_trails'))
-            <x-nav.group-item route="admin.settings.audit-trails.index" icon="far fa-circle">Audit Trails
+<x-nav.link route="dashboard" icon="fas fa-home">Dashboard</x-nav.link>
+@can('ver_configuracoes')
+    <x-nav.group label="Configurações" route="admin.settings" icon="fas fa-cogs">
+        @can('ver_auditoria')
+            <x-nav.group-item route="admin.settings.audit-trails.index" icon="far fa-circle">Auditoria
             </x-nav.group-item>
-        @endif
-
-        @if (can('view_sent_emails'))
-            <x-nav.group-item route="admin.settings.sent-emails" icon="far fa-circle">Sent Emails</x-nav.group-item>
-        @endif
-
-        @if (is_admin())
-            <x-nav.group-item route="admin.settings" icon="far fa-circle">System Settings</x-nav.group-item>
-            <x-nav.group-item route="admin.settings.roles.index" icon="far fa-circle">Roles</x-nav.group-item>
-        @endif
+        @endcan
+        @can('ver_emails_enviados')
+            <x-nav.group-item route="admin.settings.sent-emails" icon="far fa-circle">E-mails enviados
+            </x-nav.group-item>
+        @endcan
+        @can('ver_configuracoes_sistema')
+            <x-nav.group-item route="admin.settings" icon="far fa-circle">Configurações</x-nav.group-item>
+        @endcan
+        @can('ver_perfis')
+            <x-nav.group-item route="admin.settings.roles.index" icon="far fa-circle">Permissões de Usuários
+            </x-nav.group-item>
+        @endcan
     </x-nav.group>
-@endif
+@endcan
 
-@if (can('view_users'))
-    <x-nav.link route="admin.users.index" icon="fas fa-users">Users</x-nav.link>
-@endif
-<x-nav.link route="grupos.index" icon="fas fa-arrow-right">Grupos</x-nav.link>
-<x-nav.link route="departamentos.index" icon="fas fa-arrow-right">Departamentos</x-nav.link>
-<x-nav.link route="atividades.index" icon="fas fa-arrow-right">Atividades</x-nav.link>
-<x-nav.link route="empresas.index" icon="fas fa-arrow-right">Empresas</x-nav.link>
+@can('ver_usuarios')
+    <x-nav.link route="admin.users.index" icon="fas fa-users">Usuários</x-nav.link>
+@endcan
+@can('ver_grupos')
+    <x-nav.link route="grupos.index" icon="fas fa-arrow-right">Grupos</x-nav.link>
+@endcan
+@can('ver_departamentos')
+    <x-nav.link route="departamentos.index" icon="fas fa-arrow-right">Departamentos</x-nav.link>
+@endcan
+@can('ver_atividades')
+    <x-nav.link route="atividades.index" icon="fas fa-arrow-right">Atividades</x-nav.link>
+@endcan
+@can('ver_empresas')
+    <x-nav.link route="empresas.index" icon="fas fa-arrow-right">Empresas</x-nav.link>
+@endcan
+<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+    class="flex text-white mt-10 items-center px-2 py-2 my-2 hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-100 hover:text-gray-800 rounded-md cursor-pointer">
+    <i class="fas fa-sign-out-alt mr-1"></i> Sair do sistema</a>

@@ -3,6 +3,9 @@
     <p>
         <a href="{{ route('empresas.index') }}">Empresas</a>
         <span class="dark:text-gray-200">- {{ $empresa->nome }}</span>
+        <span class="dark:text-gray-200">-
+            <a href="{{ route('empresas.edit', ['empresa' => $empresa->id]) }}">
+                <i class="fa fa-edit text-lg"></i> Atualizar cadastro</a></span>
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">

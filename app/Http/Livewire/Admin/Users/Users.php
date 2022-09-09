@@ -12,7 +12,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Livewire\WithPagination;
 
-use function abort_if_cannot;
 use function now;
 use function view;
 
@@ -33,8 +32,6 @@ class Users extends Base
 
     public function render(): View
     {
-        abort_if_cannot('view_users');
-
         return view('livewire.admin.users.index');
     }
 
@@ -59,12 +56,12 @@ class Users extends Base
         $query = $this->builder();
 
         if ($this->name) {
-            $query->where('name', 'like', '%'.$this->name.'%');
+            $query->where('name', 'like', '%' . $this->name . '%');
         }
 
         if ($this->email) {
             $this->openFilter = true;
-            $query->where('email', 'like', '%'.$this->email.'%');
+            $query->where('email', 'like', '%' . $this->email . '%');
         }
 
         if ($this->joined) {
@@ -87,8 +84,6 @@ class Users extends Base
 
     public function deleteUser($id): void
     {
-        abort_if_cannot('delete_user');
-
         $this->builder()->findOrFail($id)->delete();
 
         $this->dispatchBrowserEvent('close-modal');

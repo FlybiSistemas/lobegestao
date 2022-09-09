@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Admin\Roles;
 
 use App\Http\Livewire\Base;
-use App\Models\Roles\Role;
 use Illuminate\Contracts\View\View;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 
 use function view;
 
@@ -46,7 +46,7 @@ class Roles extends Base
         $query = $this->builder();
 
         if ($this->query) {
-            $query->where('name', 'like', '%'.$this->query.'%');
+            $query->where('name', 'like', '%' . $this->query . '%');
         }
 
         return $query->paginate($this->paginate);

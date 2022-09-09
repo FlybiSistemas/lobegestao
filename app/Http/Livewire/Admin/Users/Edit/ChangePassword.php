@@ -31,7 +31,7 @@ class ChangePassword extends Base
         return [
             'newPassword'     => [
                 'required',
-                Password::min(16)
+                Password::min(6)
                     ->mixedCase()
                     ->letters()
                     ->numbers()
@@ -64,7 +64,7 @@ class ChangePassword extends Base
         $this->user->save();
 
         add_user_log([
-            'title'        => "updated ".$this->user->name."'s password",
+            'title'        => "updated " . $this->user->name . "'s password",
             'reference_id' => $this->user->id,
             'link'         => route('admin.users.edit', ['user' => $this->user->id]),
             'section'      => 'Users',

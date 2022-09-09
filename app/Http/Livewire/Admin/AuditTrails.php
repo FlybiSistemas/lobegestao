@@ -11,9 +11,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Livewire\WithPagination;
 
-use function abort_if_cannot;
-use function view;
-
 class AuditTrails extends Base
 {
     use WithPagination;
@@ -31,8 +28,6 @@ class AuditTrails extends Base
 
     public function render(): View
     {
-        abort_if_cannot('view_audit_trails');
-
         $types    = AuditTrail::groupby('type')->pluck('type');
         $sections = AuditTrail::groupby('section')->pluck('section');
         $users    = User::isActive()->orderby('name')->get();
@@ -61,7 +56,7 @@ class AuditTrails extends Base
         $query = $this->builder();
 
         if ($this->title) {
-            $query->where('title', 'like', '%'.$this->title.'%');
+            $query->where('title', 'like', '%' . $this->title . '%');
         }
 
         if ($this->user_id) {

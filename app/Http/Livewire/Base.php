@@ -3,10 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\AuditTrail;
-use App\Models\Roles\Permission;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Base extends Component
@@ -18,14 +16,8 @@ class Base extends Component
 
         //if user is logged in
         if (auth()->check()) {
-            foreach ($this->getPermissions() as $permission) {
-                Gate::define($permission->name, function ($user) use ($permission) {
-                    return $user->hasPermission($permission);
-                });
-            }
-
             //if user is not active log the user out
-            if (!user()->is_active) {
+            if (!Auth::user()->is_active) {
                 flash('Your account has been deactivated. You cannot login.')->warning();
 
                 AuditTrail::create([
@@ -43,10 +35,5 @@ class Base extends Component
         } else {
             redirect(route('login'));
         }
-    }
-
-    protected function getPermissions(): Collection
-    {
-        return Permission::with('roles')->get();
     }
 }

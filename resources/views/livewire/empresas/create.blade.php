@@ -1,19 +1,12 @@
-<div>
-    <x-modal>
-        <x-slot name="trigger">
-            <button class="btn btn-primary" @click="on = true">Adicionar Empresa</button>
-        </x-slot>
-
-        <x-slot name="title">Adicionar Empresa</x-slot>
-
-        <x-slot name="content">
-            <x-form.input wire:model="nome" label="Nome" name="nome" required>{{ old('nome') }}</x-form.input>
-        </x-slot>
-
-        <x-slot name="footer">
-            <button class="btn" @click="on = false">Cancelar</button>
-            <button class="btn btn-primary" wire:click="store">Salvar</button>
-        </x-slot>
-
-    </x-modal>
+@section('title', 'Nova Empresa')
+<div class="mx-auto max-w-screen-lg">
+    <div class="mb-5 flex items-start justify-content-start">
+        <a href="{{ route('empresas.index') }}" class="py-3 mr-5"><i class="fa fa-arrow-left"></i> Voltar</a>
+        <h3>| Nova Empresa</h3>
+    </div>
+    <div class="clearfix"></div>
+    <x-form wire:submit.prevent="store" method="post">
+        @include('livewire.empresas.fields')
+        <x-form.submit>Salvar</x-form.submit>
+    </x-form>
 </div>

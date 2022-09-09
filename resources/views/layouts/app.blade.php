@@ -54,8 +54,8 @@
                         </div>
 
                         <div class="flex">
-                            <livewire:admin.notifications-menu />
-                            <livewire:admin.help-menu />
+                            {{-- <livewire:admin.notifications-menu /> --}}
+                            {{-- <livewire:admin.help-menu /> --}}
                             <livewire:admin.users.user-menu />
                         </div>
                     </div>

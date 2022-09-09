@@ -11,7 +11,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Livewire\WithPagination;
 
-use function abort_if_cannot;
 use function view;
 
 class Activity extends Base
@@ -30,8 +29,6 @@ class Activity extends Base
 
     public function render(): View
     {
-        abort_if_cannot('view_users_activity');
-
         $types    = AuditTrail::groupby('type')->pluck('type');
         $sections = AuditTrail::groupby('section')->pluck('section');
 
@@ -40,8 +37,10 @@ class Activity extends Base
 
     public function builder()
     {
-        return AuditTrail::where('user_id', $this->user?->id)->orderBy($this->sortField,
-            $this->sortAsc ? 'asc' : 'desc');
+        return AuditTrail::where('user_id', $this->user?->id)->orderBy(
+            $this->sortField,
+            $this->sortAsc ? 'asc' : 'desc'
+        );
     }
 
     public function sortBy($field): void
@@ -60,7 +59,7 @@ class Activity extends Base
         $query = $this->builder();
 
         if ($this->title) {
-            $query->where('title', 'like', '%'.$this->title.'%');
+            $query->where('title', 'like', '%' . $this->title . '%');
         }
 
         if ($this->section) {

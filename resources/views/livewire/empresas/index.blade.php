@@ -3,7 +3,7 @@
     <div class="flex justify-between">
         <h1>Empresas</h1>
         <div>
-            <livewire:empresas.create-empresa />
+            <a class="btn btn-primary" href="{{ route('empresas.create') }}">Adicionar Empresa</a>
         </div>
     </div>
 
@@ -16,42 +16,37 @@
     </div>
 
     <div class="overflow-x-scroll shadow-md">
-        <table>
+        <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border">
             <thead>
                 <tr>
-                    <th>CNPJ</th>
                     <th><a href="#" wire:click.prevent="sortBy('nome')">Nome</a></th>
                     <th><a href="#" wire:click.prevent="sortBy('g.nome')">Grupo</a></th>
-                    <th><a href="#" wire:click.prevent="sortBy('d.nome')">Departamento</a></th>
+                    <th><a href="#" wire:click.prevent="sortBy('d.nome')">Depart.</a></th>
                     <th><a href="#" wire:click.prevent="sortBy('at.nome')">Atividade</a></th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($this->empresas() as $obj)
-                    <tr>
-                        <td>
-                            {{ $obj->cnpj }}
+                    <tr class="border-b">
+                        <td class="p-2">
+                            <a href="{{ route('empresas.edit', ['empresa' => $obj->id]) }}">
+                                <strong>{{ $obj->nome }}</strong>
+                            </a>
+                            <br /><i>{{ $obj->cnpj }}</i>
                         </td>
-                        <td>
-                            {{ $obj->nome }}
-                        </td>
-                        <td>
-                            {{ $obj->grupo ? $obj->grupo->nome : '' }}
-                        </td>
-                        <td>
-                            {{ $obj->departamento ? $obj->departamento->nome : '' }}
-                        </td>
-                        <td>
-                            {{ $obj->atividade ? $obj->atividade->nome : '' }}
-                        </td>
-                        <td>
+                        <td class="p-2">{{ $obj->grupo ? $obj->grupo->nome : '' }}</td>
+                        <td class="p-2">{{ $obj->departamento ? $obj->departamento->nome : '' }}</td>
+                        <td class="p-2">{{ $obj->atividade ? $obj->atividade->nome : '' }}</td>
+                        <td class="p-2">
                             <div class="flex space-x-2">
-                                <a href="{{ route('empresas.edit', ['empresa' => $obj->id]) }}">Edit</a>
+                                <a href="{{ route('empresas.edit', ['empresa' => $obj->id]) }}">
+                                    <i class="fa fa-edit text-lg"></i></a>
 
                                 <x-modal>
                                     <x-slot name="trigger">
-                                        <a href="#" @click="on = true">Excluir</a>
+                                        <a href="#" @click="on = true"><i
+                                                class="fa fa-times text-red-500 ml-2 text-lg"></i></a>
                                     </x-slot>
 
                                     <x-slot name="title">Confirmar Exclusão</x-slot>

@@ -3,6 +3,7 @@ window.Alpine = Alpine
 Alpine.start()
 
 import 'flatpickr';
+import { Portuguese } from "flatpickr/dist/l10n/pt.js"
 
 import * as FilePond from 'filepond';
 window.FilePond = FilePond;

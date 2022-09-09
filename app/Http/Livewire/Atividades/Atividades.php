@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Atividades extends Base
 {
     use WithPagination;
-    public    $paginate   = '';
+    public    $paginate   = 10;
     public    $checked    = [];
     public    $nome       = '';
     public    $sortField  = 'nome';

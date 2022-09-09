@@ -6,10 +6,6 @@ use App\Http\Livewire\Base;
 use App\Models\Empresa;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
-use Asantibanez\LivewireCharts\Facades\LivewireCharts;
-
-use function abort_if_cannot;
-use function view;
 
 class Dashboard extends Base
 {
@@ -35,8 +31,6 @@ class Dashboard extends Base
 
     public function render(): View
     {
-        abort_if_cannot('view_dashboard');
-
         $empresas = Empresa::query()
             ->join('grupos as g', 'g.id', '=', 'empresas.grupo_id', 'left')
             ->join('departamentos as d', 'd.id', '=', 'empresas.departamento_id', 'left')
