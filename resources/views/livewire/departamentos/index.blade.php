@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 @foreach ($this->departamentos() as $obj)
-                    <tr>
+                    <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                         <td class="p-2">
                             {{ $obj->nome }}
                         </td>

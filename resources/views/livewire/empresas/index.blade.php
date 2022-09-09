@@ -28,7 +28,7 @@
             </thead>
             <tbody>
                 @foreach ($this->empresas() as $obj)
-                    <tr class="border-b">
+                    <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                         <td class="p-2">
                             <a href="{{ route('empresas.edit', ['empresa' => $obj->id]) }}">
                                 <strong>{{ $obj->nome }}</strong>

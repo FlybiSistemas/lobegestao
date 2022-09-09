@@ -31,7 +31,7 @@
             </thead>
             <tbody>
                 @foreach ($this->users() as $user)
-                    <tr>
+                    <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                         <td class="p-2">
                             {{ $user->name }}
                         </td>

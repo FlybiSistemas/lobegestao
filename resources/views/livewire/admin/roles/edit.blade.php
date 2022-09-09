@@ -1,7 +1,8 @@
 @section('title', 'Edit Role')
 <div class=" mx-auto max-w-screen-md">
     <div class="mb-5">
-        <a href="{{ route('admin.settings.roles.index') }}"><i class="fa fa-arrow-left"></i> Voltar</a>
+        <a class="dark:text-white" href="{{ route('admin.settings.roles.index') }}"><i class="fa fa-arrow-left"></i>
+            Voltar</a>
         <span class="dark:text-gray-200">- Alterar Grupo</span>
     </div>
     <div class="clearfix"></div>

@@ -32,7 +32,7 @@
     <div class="rounded-md shadow-sm">
         <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" value="{{ $slot }}"
             {{ $required }}
-            {{ $attributes->merge(['class' => 'block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm']) }}>
+            {{ $attributes->merge(['class' => 'block w-full dark:bg-gray-700 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 dark:border-gray-500 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm']) }}>
         @error($name)
             <p class="error text-xs p-0 m-0">{{ $message }}</p>
         @enderror

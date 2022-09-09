@@ -1,13 +1,10 @@
 @section('title', 'Roles')
 <div>
     <div class="flex justify-between">
-
         <h1>Grupos</h1>
-
         <div>
             <livewire:admin.roles.create />
         </div>
-
     </div>
     @include('errors.messages')
     <div class="grid sm:grid-cols-1 md:grid-cols-4 gap-4">
@@ -21,9 +18,9 @@
 
     </div>
 
-    <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border">
+    <table class="w-full text-xs text-left text-gray-500 dark:text-gray-600 border">
         <thead>
-            <tr>
+            <tr class="bg-gray-50 border-b dark:bg-gray-700 dark:border-gray-800">
                 <th>
                     <a href="#" wire:click.prevent="sortBy('name')">Nome</a>
                 </th>
@@ -34,7 +31,7 @@
         </thead>
         <tbody>
             @foreach ($this->roles() as $role)
-                <tr>
+                <tr class="bg-gray-50 border-b dark:bg-gray-600 dark:border-gray-700">
                     <td class="p-2">{{ $role->name }}</td>
                     <td class="p-2">
                         <div class="flex space-x-2">

@@ -26,7 +26,7 @@
             <h4 class="mb-0 text-center">Certificados Vencendo essa semana</h4>
         </div>
         <div class="card-body h-72 overflow-auto">
-            <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border">
+            <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border dark:border-gray-800">
                 <thead>
                     <tr>
                         <th>Empresa</th>
@@ -58,9 +58,9 @@
             <h4 class="mb-0 text-center">Certificados Vencendo esse mês</h4>
         </div>
         <div class="card-body h-72 overflow-auto">
-            <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border">
+            <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border dark:border-gray-600">
                 <thead>
-                    <tr>
+                    <tr class="dark:bg-gray-600">
                         <th>Empresa</th>
                         <th>Depart</th>
                         <th>Validade</th>
@@ -68,7 +68,7 @@
                 </thead>
                 <tbody>
                     @foreach ($this->mes as $obj)
-                        <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
+                        <tr class="bg-gray-50 border-b dark:bg-gray-700 dark:border-gray-800">
                             <td class="p-2">
                                 <a href="{{ route('empresas.show', ['empresa' => $obj->id]) }}">{{ $obj->nome }}</a>
                                 <br />{{ $obj->cnpj }}

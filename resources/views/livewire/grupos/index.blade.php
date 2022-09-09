@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 @foreach ($this->grupos() as $obj)
-                    <tr>
+                    <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                         <td class="p-2">
                             <div class="pl-1 pt-1">{{ $obj->nome }}</div>
                         </td>
