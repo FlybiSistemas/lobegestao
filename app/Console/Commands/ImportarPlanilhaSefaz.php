@@ -22,7 +22,7 @@ class ImportarPlanilhaSefaz extends Command
     public function handle()
     {
         Log::info("Início da importação");
-        $file = "/home/carlos/Downloads/acesso-sefaz.csv";
+        $file = "/home1/lobege28/lobegestao/acesso-sefaz.csv";
         $handleFile = fopen($file, "r");
         $linha = 0;
         try {

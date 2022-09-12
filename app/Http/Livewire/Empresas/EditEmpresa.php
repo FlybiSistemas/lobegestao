@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\ValidationException;
+use App\Helpers\FormatterHelper;
 
 use function flash;
 use function redirect;
@@ -157,7 +158,7 @@ class EditEmpresa extends Base
         $this->validate();
 
         $this->empresa->nome  = mb_strtoupper($this->nome);
-        $this->empresa->cnpj = $this->cnpj;
+        $this->empresa->cnpj = FormatterHelper::onlyNumbers($this->cnpj);
         $this->empresa->fantasia = $this->fantasia;
         $this->empresa->regime_tributario = $this->regime_tributario;
         $this->empresa->periodo_apuracao = $this->periodo_apuracao;

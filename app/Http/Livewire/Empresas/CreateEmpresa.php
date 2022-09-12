@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\ValidationException;
+use App\Helpers\FormatterHelper;
 
 use function flash;
 use function redirect;
@@ -114,7 +115,7 @@ class CreateEmpresa extends Base
         $this->validate();
         $empresa = Empresa::create([
             'nome'  => mb_strtoupper($this->nome),
-            'cnpj' => $this->cnpj,
+            'cnpj' => FormatterHelper::onlyNumbers($this->cnpj),
             'fantasia' => $this->fantasia,
             'regime_tributario' => $this->regime_tributario,
             'periodo_apuracao' => $this->periodo_apuracao,
