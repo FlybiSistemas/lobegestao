@@ -21,7 +21,7 @@ class ImportarPlanilhaPrefeitura extends Command
     public function handle()
     {
         Log::info("Início da importação");
-        $file = "/home/carlos/Downloads/acesso-prefeitura.csv";
+        $file = "/home1/lobege28/lobegestao/acesso-prefeitura.csv";
         $handleFile = fopen($file, "r");
         $linha = 0;
         try {
