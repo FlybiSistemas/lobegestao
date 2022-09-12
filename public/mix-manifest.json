@@ -8,5 +8,15 @@
     "/webfonts/fa-solid-900.ttf": "/webfonts/fa-solid-900.ttf",
     "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
     "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf",
-    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2"
+    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2",
+    "/images/favicon/android-chrome-192x192.png": "/images/favicon/android-chrome-192x192.png",
+    "/images/favicon/android-chrome-384x384.png": "/images/favicon/android-chrome-384x384.png",
+    "/images/favicon/apple-touch-icon.png": "/images/favicon/apple-touch-icon.png",
+    "/images/favicon/browserconfig.xml": "/images/favicon/browserconfig.xml",
+    "/images/favicon/favicon-16x16.png": "/images/favicon/favicon-16x16.png",
+    "/images/favicon/favicon-32x32.png": "/images/favicon/favicon-32x32.png",
+    "/images/favicon/favicon.ico": "/images/favicon/favicon.ico",
+    "/images/favicon/mstile-150x150.png": "/images/favicon/mstile-150x150.png",
+    "/images/favicon/safari-pinned-tab.svg": "/images/favicon/safari-pinned-tab.svg",
+    "/images/favicon/site.webmanifest": "/images/favicon/site.webmanifest"
 }

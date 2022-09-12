@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class ImportarPlanilha extends Command
 {
-    protected $signature = 'importar-planilha';
+    protected $signature = 'lobe:importar-planilha';
     protected $description = 'Temporário. Importar a planilha base';
 
     public function __construct()

@@ -33,4 +33,29 @@ class Empresa extends Model
     {
         return $this->belongsTo(Atividade::class);
     }
+
+    public function nomeRegimeTributario()
+    {
+        if ($this->regime_tributario == "S") {
+            return "SIMPLES";
+        }
+        if ($this->regime_tributario == "R") {
+            return "LUCRO REAL";
+        }
+        return "LUCRO PRESUMIDO";
+    }
+
+    public function nomePeriodoApuracao()
+    {
+        if ($this->periodo_apuracao == "S") {
+            return "SEMANAL";
+        }
+        if ($this->periodo_apuracao == "M") {
+            return "MENSAL";
+        }
+        if ($this->periodo_apuracao == "T") {
+            return "TRIMESTRAL";
+        }
+        return "ANUAL";
+    }
 }

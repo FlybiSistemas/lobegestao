@@ -51,11 +51,11 @@
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">REGIME TRIBUTÁRIO:</td>
-                            <td class="py-2">{{ $empresa->regime_tributario }}</td>
+                            <td class="py-2">{{ $empresa->nomeRegimeTributario() }}</td>
                         </tr>
                         <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">REGIME APURACAO:</td>
-                            <td class="py-2">{{ $empresa->periodo_apuracao }}</td>
+                            <td class="py-2">{{ $empresa->nomePeriodoApuracao() }}</td>
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">CONTRATO SOCIAL:</td>
@@ -113,7 +113,13 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">TIPO ACESSO / URL:</td>
-                            <td class="py-2">{{ $empresa->remoto_url }}</td>
+                            <td class="py-2">
+                                {{ $empresa->remoto_url }}
+                                @if (str_starts_with($empresa->remoto_url, 'http'))
+                                    <a href="{{ $empresa->remoto_url }}" target="_blank"> | Abrir <i
+                                            class="fa fa-external-link"></i></a>
+                                @endif
+                            </td>
                         </tr>
                         <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">REMOTO - USUÁRIO:</td>
@@ -143,7 +149,13 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">URL:</td>
-                            <td class="py-2">{{ $empresa->sefaz_url }}</td>
+                            <td class="py-2">
+                                {{ $empresa->sefaz_url }}
+                                @if (str_starts_with($empresa->sefaz_url, 'http'))
+                                    <a href="{{ $empresa->sefaz_url }}" target="_blank"> | Abrir <i
+                                            class="fa fa-external-link"></i></a>
+                                @endif
+                            </td>
                         </tr>
                         <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">Estado:</td>
@@ -177,7 +189,13 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">URL:</td>
-                            <td class="py-2">{{ $empresa->prefeitura_url }}</td>
+                            <td class="py-2">
+                                {{ $empresa->prefeitura_url }}
+                                @if (str_starts_with($empresa->prefeitura_url, 'http'))
+                                    <a href="{{ $empresa->prefeitura_url }}" target="_blank"> | Abrir <i
+                                            class="fa fa-external-link"></i></a>
+                                @endif
+                            </td>
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">USUÁRIO:</td>
