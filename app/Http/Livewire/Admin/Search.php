@@ -31,11 +31,18 @@ class Search extends Base
                 $fields  = $query->getModel()->searchable;
                 $fields  = implode(',', $fields);
                 $search  = str_replace('@', '', $this->query);
-                $results = $query->selectRaw('*, MATCH (' . $fields . ') AGAINST (? IN BOOLEAN MODE)', ['*' . $search . '*'])
+                $query = $query
                     ->whereRaw('MATCH (' . $fields . ') AGAINST (? IN BOOLEAN MODE)', ['*' . $search . '*'])
-                    ->take(10)
-                    ->get();
-
+                    ->take(10);
+                if ($query->getModel()->section == "Empresa") {
+                    // incluir a pesquisa pelo grupo
+                    $query = $query->selectRaw('empresas.*');
+                    $query = $query->join('grupos as g', 'empresas.grupo_id', '=', 'g.id')
+                        ->orWhereRaw("g.nome like '%$search%'");
+                }
+                // $query = $query->toSql();
+                $results = $query->get();
+                // dd($query);
                 foreach ($results as $result) {
                     $this->searchResults[] = [
                         'label'   => $result[$query->getModel()->label],

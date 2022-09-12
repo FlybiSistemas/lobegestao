@@ -9,6 +9,7 @@ use App\Models\Atividade;
 use App\Models\Departamento;
 use App\Models\Empresa;
 use App\Models\Grupo;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -56,6 +57,10 @@ class EditEmpresa extends Base
     public $grupo_id = '';
     public $departamento_id = '';
     public $atividade_id = '';
+    public $data_abertura = '';
+    public $cliente_desde = '';
+    public $cliente_ate = '';
+    public $particularidades = '';
 
     public $grupos = [];
     public $departamentos = [];
@@ -101,7 +106,7 @@ class EditEmpresa extends Base
         $this->fantasia = $this->empresa->fantasia ?? '';
         $this->regime_tributario = $this->empresa->regime_tributario ?? '';
         $this->periodo_apuracao = $this->empresa->periodo_apuracao ?? '';
-        $this->responsavel_departamento = $this->empresa->responsavel_departamento ?? '';
+        $this->responsavel_departamento = $this->empresa->responsavel_departamento_pessoal ?? '';
         $this->cep = $this->empresa->cep ?? '';
         $this->logradouro = $this->empresa->logradouro ?? '';
         $this->bairro = $this->empresa->bairro ?? '';
@@ -128,6 +133,10 @@ class EditEmpresa extends Base
         $this->prefeitura_url = $this->empresa->prefeitura_url ?? '';
         $this->prefeitura_usuario = $this->empresa->prefeitura_usuario ?? '';
         $this->prefeitura_senha = $this->empresa->prefeitura_senha ?? '';
+        $this->particularidades = $this->empresa->particularidades ?? '';
+        $this->data_abertura = $this->empresa->data_abertura ? $this->empresa->data_abertura->format('d/m/Y') : '';
+        $this->cliente_desde = $this->empresa->cliente_desde ? $this->empresa->cliente_desde->format('d/m/Y') : '';
+        $this->cliente_ate = $this->empresa->cliente_ate ? $this->empresa->cliente_ate->format('d/m/Y') : '';
 
         $this->grupo_id = $this->empresa->grupo_id ?? '';
         $this->departamento_id = $this->empresa->departamento_id ?? '';
@@ -178,6 +187,10 @@ class EditEmpresa extends Base
         $this->empresa->grupo_id = $this->grupo_id;
         $this->empresa->departamento_id = $this->departamento_id;
         $this->empresa->atividade_id = $this->atividade_id;
+        $this->empresa->data_abertura = $this->data_abertura ? Carbon::createFromFormat("d/m/Y", $this->data_abertura) : null;
+        $this->empresa->cliente_desde = $this->cliente_desde ? Carbon::createFromFormat("d/m/Y", $this->cliente_desde) : null;
+        $this->empresa->cliente_ate = $this->cliente_ate ? Carbon::createFromFormat("d/m/Y", $this->cliente_ate) : null;
+        $this->empresa->particularidades = $this->particularidades;
         $this->empresa->save();
         flash('Empresa atualizado')->success();
         return redirect()->route('empresas.index');
