@@ -56,6 +56,10 @@ class CreateEmpresa extends Base
     public $grupo_id = '';
     public $departamento_id = '';
     public $atividade_id = '';
+    public $data_abertura = '';
+    public $cliente_desde = '';
+    public $cliente_ate = '';
+    public $particularidades = '';
 
     public $grupos = [];
     public $departamentos = [];
@@ -138,6 +142,10 @@ class CreateEmpresa extends Base
             'grupo_id' => $this->grupo_id,
             'departamento_id' => $this->departamento_id,
             'atividade_id' => $this->atividade_id,
+            'cliente_desde' => $this->cliente_desde ? Carbon::createFromFormat("d/m/Y", $this->cliente_desde) : null,
+            'cliente_ate' => $this->cliente_ate ? Carbon::createFromFormat("d/m/Y", $this->cliente_ate) : null,
+            'data_abertura' => $this->data_abertura ? Carbon::createFromFormat("d/m/Y", $this->data_abertura) : null,
+            'particularidades' => $this->particularidades,
         ]);
         flash('Empresa criado')->success();
         return redirect()->route('empresas.index');

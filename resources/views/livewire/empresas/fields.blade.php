@@ -59,7 +59,7 @@
             </x-form.select>
         </div>
         <div class="col-span-3">
-            <x-form.input wire:model="responsavel_departamento" label='Responsável' name='responsavel_departamento'
+            <x-form.input wire:model="responsavel_departamento" label='Responsável DP' name='responsavel_departamento'
                 required>
             </x-form.input>
         </div>
@@ -108,6 +108,31 @@
                 <x-form.select-option value="SP">SP</x-form.select-option>
                 <x-form.select-option value="TO">TO</x-form.select-option>
             </x-form.select>
+        </div>
+        <div class="col-span-3">
+            <x-form.date id="data_abertura" name="data_abertura" label="Data de Abertura"
+                wire:model.lazy="data_abertura">
+                {{ old('data_abertura', request('data_abertura')) }}
+            </x-form.date>
+        </div>
+        <div class="col-span-3">
+            <x-form.date id="cliente_desde" name="cliente_desde" label="Cliente desde"
+                wire:model.lazy="cliente_desde">
+                {{ old('cliente_desde', request('cliente_desde')) }}
+            </x-form.date>
+        </div>
+        <div class="col-span-3">
+            <x-form.date id="cliente_ate" name="cliente_ate" label="Cliente até" wire:model.lazy="cliente_ate">
+                {{ old('cliente_ate', request('cliente_ate')) }}
+            </x-form.date>
+        </div>
+
+    </div>
+    <div class="row grid grid-cols-12 gap-4">
+        <div class="col-span-12">
+            <x-form.textarea rows="10" wire:model="particularidades" label='Particularidades da empresa'
+                name='particularidades'>
+            </x-form.textarea>
         </div>
     </div>
 </div>
@@ -238,8 +263,12 @@
             </x-form.input>
         </div>
         <div class="col-span-3">
-            <x-form.input wire:model="sefaz_contador" label='Contador' name='sefaz_contador'>
-            </x-form.input>
+            <x-form.select wire:model="sefaz_contador" label='Contador' name='sefaz_contador' required>
+                <x-form.select-option value="">Escolha o contador da empresa</x-form.select-option>
+                <x-form.select-option value="Gabriel Cotrim">Gabriel Cotrim</x-form.select-option>
+                <x-form.select-option value="Gildo França Jr">Gildo França Jr</x-form.select-option>
+                <x-form.select-option value="Hiago Malon">Hiago Malon</x-form.select-option>
+            </x-form.select>
         </div>
         <div class="col-span-3">
             <x-form.input wire:model="sefaz_usuario" label='Usuário' name='sefaz_usuario'>

@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Empresa extends Model
 {
     protected $guarded = [];
-    protected $dates = ['certificado_validade'];
-    public array $searchable = ['nome', 'cnpj', 'fantasia'];
+    protected $dates = ['certificado_validade', 'data_abertura', 'cliente_desde', 'cliente_ate'];
+    public array $searchable = ['empresas.nome', 'empresas.cnpj', 'empresas.fantasia'];
     public string $label     = 'nome';
     public string $section   = 'Empresa';
 

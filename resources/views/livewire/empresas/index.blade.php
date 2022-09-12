@@ -23,6 +23,8 @@
                     <th><a href="#" wire:click.prevent="sortBy('g.nome')">Grupo</a></th>
                     <th><a href="#" wire:click.prevent="sortBy('d.nome')">Depart.</a></th>
                     <th><a href="#" wire:click.prevent="sortBy('at.nome')">Atividade</a></th>
+                    <th>Abertura</th>
+                    <th>Cliente desde</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -38,6 +40,13 @@
                         <td class="p-2">{{ $obj->grupo ? $obj->grupo->nome : '' }}</td>
                         <td class="p-2">{{ $obj->departamento ? $obj->departamento->nome : '' }}</td>
                         <td class="p-2">{{ $obj->atividade ? $obj->atividade->nome : '' }}</td>
+                        <td class="p-2">{{ $obj->data_abertura ? $obj->data_abertura->format('d/m/Y') : '' }}</td>
+                        <td class="p-2">
+                            @if ($obj->cliente_desde)
+                                {{ $obj->cliente_desde->format('d/m/Y') }}
+                                {{ $obj->cliente_ate ? ' até ' . $obj->cliente_ate->format('d/m/Y') : '' }}
+                            @endif
+                        </td>
                         <td class="p-2">
                             <div class="flex space-x-2">
                                 <a href="{{ route('empresas.edit', ['empresa' => $obj->id]) }}">

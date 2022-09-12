@@ -23,7 +23,7 @@
 @php
 $options = array_merge(
     [
-        'dateFormat' => 'd-m-Y',
+        'dateFormat' => 'd/m/Y',
         'enableTime' => false,
         'time_24hr' => true,
         'locale' => 'pt',
