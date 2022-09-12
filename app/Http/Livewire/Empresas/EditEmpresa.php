@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Empresas;
 
 use App\Http\Livewire\Base;
 use App\Models\Atividade;
+use App\Models\Contador;
 use App\Models\Departamento;
 use App\Models\Empresa;
 use App\Models\Grupo;
@@ -57,6 +58,7 @@ class EditEmpresa extends Base
     public $grupo_id = '';
     public $departamento_id = '';
     public $atividade_id = '';
+    public $contador_id = '';
     public $data_abertura = '';
     public $cliente_desde = '';
     public $cliente_ate = '';
@@ -65,6 +67,7 @@ class EditEmpresa extends Base
     public $grupos = [];
     public $departamentos = [];
     public $atividades = [];
+    public $contadores = [];
 
     protected function rules(): array
     {
@@ -101,6 +104,7 @@ class EditEmpresa extends Base
         $this->grupos = Grupo::all();
         $this->atividades = Atividade::all();
         $this->departamentos = Departamento::all();
+        $this->contadores = Contador::all();
         $this->nome = $this->empresa->nome ?? '';
         $this->cnpj = $this->empresa->cnpj ?? '';
         $this->fantasia = $this->empresa->fantasia ?? '';

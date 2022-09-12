@@ -1,15 +1,16 @@
-@section('title', 'Empresas')
+@section('title', 'Contadores')
 <div>
     <div class="flex justify-between">
-        <h1>Empresas</h1>
+        <h1>Contadores</h1>
         <div>
-            <a class="btn btn-primary" href="{{ route('empresas.create') }}">Adicionar Empresa</a>
+            <livewire:contadores.create-contador />
         </div>
     </div>
 
     <div class="mt-5 mb-5 grid sm:grid-cols-1 md:grid-cols-3 gap-4">
         <div class="col-span-2">
-            <x-form.input type="search" name="nome" wire:model="nome" label="none" placeholder="Pesquisar empresas">
+            <x-form.input type="search" name="nome" wire:model="nome" label="none" placeholder="Pesquisar contadores">
+                {{ old('nome', request('nome')) }}
             </x-form.input>
         </div>
 
@@ -20,37 +21,19 @@
             <thead>
                 <tr>
                     <th><a href="#" wire:click.prevent="sortBy('nome')">Nome</a></th>
-                    <th><a href="#" wire:click.prevent="sortBy('g.nome')">Grupo</a></th>
-                    <th><a href="#" wire:click.prevent="sortBy('d.nome')">Depart.</a></th>
-                    <th><a href="#" wire:click.prevent="sortBy('at.nome')">Atividade</a></th>
-                    <th>Abertura</th>
-                    <th>Cliente desde</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($this->empresas() as $obj)
+                @foreach ($this->contadores() as $obj)
                     <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                         <td class="p-2">
-                            <a href="{{ route('empresas.show', ['empresa' => $obj->id]) }}">
-                                <strong>{{ $obj->nome }}</strong>
-                            </a>
-                            <br /><i>{{ $obj->cnpj }}</i>
-                        </td>
-                        <td class="p-2">{{ $obj->grupo ? $obj->grupo->nome : '' }}</td>
-                        <td class="p-2">{{ $obj->departamento ? $obj->departamento->nome : '' }}</td>
-                        <td class="p-2">{{ $obj->atividade ? $obj->atividade->nome : '' }}</td>
-                        <td class="p-2">{{ $obj->data_abertura ? $obj->data_abertura->format('d/m/Y') : '' }}</td>
-                        <td class="p-2">
-                            @if ($obj->cliente_desde)
-                                {{ $obj->cliente_desde->format('d/m/Y') }}
-                                {{ $obj->cliente_ate ? ' até ' . $obj->cliente_ate->format('d/m/Y') : '' }}
-                            @endif
+                            {{ $obj->nome }}
                         </td>
                         <td class="p-2">
                             <div class="flex space-x-2">
-                                <a href="{{ route('empresas.edit', ['empresa' => $obj->id]) }}">
-                                    <i class="fa fa-edit text-lg"></i></a>
+                                <a href="{{ route('contadores.edit', ['contador' => $obj->id]) }}"><i
+                                        class="fa fa-edit text-lg"></i></a>
 
                                 <x-modal>
                                     <x-slot name="trigger">
@@ -69,8 +52,8 @@
                                     <x-slot name="footer">
                                         <button @click="on = false">Cancelar</button>
                                         <button class="btn btn-red"
-                                            wire:click="deleteEmpresa('{{ $obj->id }}')">Excluir
-                                            Empresa</button>
+                                            wire:click="deleteContador('{{ $obj->id }}')">Excluir
+                                            Contador</button>
                                     </x-slot>
                                 </x-modal>
                             </div>
@@ -81,6 +64,6 @@
         </table>
     </div>
 
-    {{ $this->empresas()->links() }}
+    {{ $this->contadores()->links() }}
 
 </div>

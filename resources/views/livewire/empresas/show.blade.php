@@ -159,7 +159,7 @@
                         </tr>
                         <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">Estado:</td>
-                            <td class="py-2">{{ $empresa->sefaz_uf }}</td>
+                            <td class="py-2">{{ $empresa->estado }}</td>
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">Inscrição Estadual:</td>
@@ -167,7 +167,7 @@
                         </tr>
                         <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">Contador:</td>
-                            <td class="py-2">{{ $empresa->sefaz_contador }}</td>
+                            <td class="py-2">{{ $empresa->contador ? $empresa->contador->nome : '' }}</td>
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">USUÁRIO:</td>

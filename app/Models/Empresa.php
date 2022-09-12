@@ -34,6 +34,11 @@ class Empresa extends Model
         return $this->belongsTo(Atividade::class);
     }
 
+    public function contador()
+    {
+        return $this->belongsTo(Contador::class);
+    }
+
     public function nomeRegimeTributario()
     {
         if ($this->regime_tributario == "S") {

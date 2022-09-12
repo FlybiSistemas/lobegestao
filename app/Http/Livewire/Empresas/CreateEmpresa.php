@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Empresas;
 
 use App\Http\Livewire\Base;
 use App\Models\Atividade;
+use App\Models\Contador;
 use App\Models\Departamento;
 use App\Models\Empresa;
 use App\Models\Grupo;
@@ -56,6 +57,7 @@ class CreateEmpresa extends Base
     public $grupo_id = '';
     public $departamento_id = '';
     public $atividade_id = '';
+    public $contador_id = '';
     public $data_abertura = '';
     public $cliente_desde = '';
     public $cliente_ate = '';
@@ -64,6 +66,7 @@ class CreateEmpresa extends Base
     public $grupos = [];
     public $departamentos = [];
     public $atividades = [];
+    public $contadores = [];
 
     protected array $rules = [
         'cnpj'              => 'required|string|unique:empresas,cnpj',
@@ -71,6 +74,7 @@ class CreateEmpresa extends Base
         'grupo_id'          => 'required',
         'departamento_id'   => 'required',
         'atividade_id'      => 'required',
+        'contador_id'       => 'required',
         'responsavel_departamento' => 'required',
     ];
 
@@ -81,6 +85,7 @@ class CreateEmpresa extends Base
         'grupo_id.required' => 'Favor informar o Grupo',
         'departamento_id.required' => 'Favor informar o Departamento',
         'atividade_id.required' => 'Favor informar a Atividade',
+        'contador_id.required' => 'Favor informar o Contador',
     ];
 
     public function mount()
@@ -88,6 +93,7 @@ class CreateEmpresa extends Base
         $this->grupos = Grupo::all();
         $this->atividades = Atividade::all();
         $this->departamentos = Departamento::all();
+        $this->contadores = Contador::all();
     }
 
     /**
@@ -142,6 +148,7 @@ class CreateEmpresa extends Base
             'grupo_id' => $this->grupo_id,
             'departamento_id' => $this->departamento_id,
             'atividade_id' => $this->atividade_id,
+            'contador_id' => $this->contador_id,
             'cliente_desde' => $this->cliente_desde ? Carbon::createFromFormat("d/m/Y", $this->cliente_desde) : null,
             'cliente_ate' => $this->cliente_ate ? Carbon::createFromFormat("d/m/Y", $this->cliente_ate) : null,
             'data_abertura' => $this->data_abertura ? Carbon::createFromFormat("d/m/Y", $this->data_abertura) : null,
