@@ -171,11 +171,11 @@
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">USUÁRIO:</td>
-                            <td class="py-2">{{ $empresa->sefaz_usuario }}</td>
+                            <td class="py-2">{{ $empresa->contador ? $empresa->contador->usuario : '' }}</td>
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">SENHA:</td>
-                            <td class="py-2">{{ $empresa->sefaz_senha }}</td>
+                            <td class="py-2">{{ $empresa->contador ? $empresa->contador->senha : '' }}</td>
                         </tr>
                     </table>
                 </div>

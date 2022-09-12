@@ -146,6 +146,7 @@ class EditEmpresa extends Base
         $this->grupo_id = $this->empresa->grupo_id ?? '';
         $this->departamento_id = $this->empresa->departamento_id ?? '';
         $this->atividade_id = $this->empresa->atividade_id ?? '';
+        $this->contador_id = $this->empresa->contador_id ?? '';
     }
 
     public function render(): View
