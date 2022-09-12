@@ -29,7 +29,7 @@ return new class extends Migration
         Permission::firstOrCreate(['name' => 'editar_contador',     'description' => 'Editar contador',      'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => 'excluir_contador',    'description' => 'Excluir contador',     'guard_name' => 'web']);
 
-        $role = Role::where('name', 'admin')->first();
+        $role = Role::firstOrCreate(['name' => 'admin']);;
         $permissions = Permission::all();
         foreach ($permissions as $perm) {
             $role->givePermissionTo($perm->name);
