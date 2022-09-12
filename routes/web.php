@@ -18,6 +18,9 @@ use App\Http\Livewire\Admin\Users\ShowUser;
 use App\Http\Livewire\Admin\Users\Users;
 use App\Http\Livewire\Atividades\Atividades;
 use App\Http\Livewire\Atividades\EditAtividade;
+use App\Http\Livewire\Contadores\Contadores;
+use App\Http\Livewire\Contadores\EditContador;
+use App\Http\Livewire\Contadores\CreateContador;
 use App\Http\Livewire\Departamentos\EditDepartamento;
 use App\Http\Livewire\Departamentos\Departamentos;
 use App\Http\Livewire\Empresas\CreateEmpresa;
@@ -81,6 +84,10 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('empresas/{empresa}/edit', EditEmpresa::class)->name('empresas.edit');
     Route::get('empresas/create', CreateEmpresa::class)->name('empresas.create');
     Route::get('empresas/{empresa}', ShowEmpresa::class)->name('empresas.show');
+
+    Route::get('contadores', Contadores::class)->name('contadores.index');
+    Route::get('contadores/{contador}/edit', EditContador::class)->name('contadores.edit');
+    Route::get('contadores/create', CreateContador::class)->name('contadores.create');
 
     Route::get('atividades', Atividades::class)->name('atividades.index');
     Route::get('atividades/{atividade}/edit', EditAtividade::class)->name('atividades.edit');
