@@ -94,6 +94,7 @@
             show: false,
             position: 'top'
         },
+        colors: ['#004c6d', '#215e7e', '#387090', '#4c82a1', '#6095b3', '#74a9c6', '#88bdd9', '#9dd1ec', '#b2e6ff'],
         series: [
             @foreach ($empresasPorAtividades as $key => $value)
                 {{ count($value) }},
@@ -115,6 +116,7 @@
             show: false,
             position: 'top'
         },
+        colors: ['#004c6d', '#215e7e', '#387090', '#4c82a1', '#6095b3', '#74a9c6', '#88bdd9', '#9dd1ec', '#b2e6ff'],
         series: [
             @foreach ($empresasPorDepartamento as $key => $value)
                 {{ count($value) }},

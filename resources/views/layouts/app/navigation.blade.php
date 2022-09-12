@@ -53,14 +53,17 @@
 @can('ver_usuarios')
     <x-nav.link route="admin.users.index" icon="fas fa-users">Usuários</x-nav.link>
 @endcan
-@can('ver_grupos')
-    <x-nav.link route="grupos.index" icon="fas fa-arrow-right">Grupos</x-nav.link>
+@can('ver_atividades')
+    <x-nav.link route="atividades.index" icon="fas fa-arrow-right">Atividades</x-nav.link>
+@endcan
+@can('ver_contadores')
+    <x-nav.link route="contadores.index" icon="fas fa-arrow-right">Contadores</x-nav.link>
 @endcan
 @can('ver_departamentos')
     <x-nav.link route="departamentos.index" icon="fas fa-arrow-right">Departamentos</x-nav.link>
 @endcan
-@can('ver_atividades')
-    <x-nav.link route="atividades.index" icon="fas fa-arrow-right">Atividades</x-nav.link>
+@can('ver_grupos')
+    <x-nav.link route="grupos.index" icon="fas fa-arrow-right">Grupos</x-nav.link>
 @endcan
 @can('ver_empresas')
     <x-nav.link route="empresas.index" icon="fas fa-arrow-right">Empresas</x-nav.link>

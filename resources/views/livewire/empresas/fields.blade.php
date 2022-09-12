@@ -263,11 +263,11 @@
             </x-form.input>
         </div>
         <div class="col-span-3">
-            <x-form.select wire:model="sefaz_contador" label='Contador' name='sefaz_contador' required>
+            <x-form.select wire:model="contador_id" label='Contador' name='contador_id' required>
                 <x-form.select-option value="">Escolha o contador da empresa</x-form.select-option>
-                <x-form.select-option value="Gabriel Cotrim">Gabriel Cotrim</x-form.select-option>
-                <x-form.select-option value="Gildo França Jr">Gildo França Jr</x-form.select-option>
-                <x-form.select-option value="Hiago Malon">Hiago Malon</x-form.select-option>
+                @foreach ($this->contadores as $contador)
+                    <x-form.select-option value="{{ $contador->id }}">{{ $contador->nome }}</x-form.select-option>
+                @endforeach
             </x-form.select>
         </div>
         <div class="col-span-3">
