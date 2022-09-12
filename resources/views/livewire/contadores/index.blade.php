@@ -21,15 +21,17 @@
             <thead>
                 <tr>
                     <th><a href="#" wire:click.prevent="sortBy('nome')">Nome</a></th>
+                    <th><a href="#" wire:click.prevent="sortBy('usuario')">Usuário</a></th>
+                    <th><a href="#" wire:click.prevent="sortBy('senha')">Senha</a></th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($this->contadores() as $obj)
                     <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
-                        <td class="p-2">
-                            {{ $obj->nome }}
-                        </td>
+                        <td class="p-2">{{ $obj->nome }}</td>
+                        <td class="p-2">{{ $obj->usuario }}</td>
+                        <td class="p-2">{{ $obj->senha }}</td>
                         <td class="p-2">
                             <div class="flex space-x-2">
                                 <a href="{{ route('contadores.edit', ['contador' => $obj->id]) }}"><i
