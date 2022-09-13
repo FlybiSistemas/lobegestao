@@ -68,6 +68,9 @@
 @can('ver_empresas')
     <x-nav.link route="empresas.index" icon="fas fa-arrow-right">Empresas</x-nav.link>
 @endcan
+@can('ver_lancamentos')
+    <x-nav.link route="lancamentos.index" icon="fas fa-arrow-right">Lançamentos</x-nav.link>
+@endcan
 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
     class="flex text-white mt-10 items-center px-2 py-2 my-2 hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-100 hover:text-gray-800 rounded-md cursor-pointer">
     <i class="fas fa-sign-out-alt mr-1"></i> Sair do sistema</a>
