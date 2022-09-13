@@ -29,6 +29,10 @@ use App\Http\Livewire\Empresas\Empresas;
 use App\Http\Livewire\Empresas\ShowEmpresa;
 use App\Http\Livewire\Grupos\EditGrupo;
 use App\Http\Livewire\Grupos\Grupos;
+use App\Http\Livewire\Lancamentos\CreateLancamento;
+use App\Http\Livewire\Lancamentos\DashboardLancamentos;
+use App\Http\Livewire\Lancamentos\EditLancamento;
+use App\Http\Livewire\Lancamentos\Lancamentos;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'showLoginForm']);
@@ -80,6 +84,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('departamentos', Departamentos::class)->name('departamentos.index');
     Route::get('departamentos/{departamento}/edit', EditDepartamento::class)->name('departamentos.edit');
 
+    Route::get('atividades', Atividades::class)->name('atividades.index');
+    Route::get('atividades/{atividade}/edit', EditAtividade::class)->name('atividades.edit');
+
     Route::get('empresas', Empresas::class)->name('empresas.index');
     Route::get('empresas/{empresa}/edit', EditEmpresa::class)->name('empresas.edit');
     Route::get('empresas/create', CreateEmpresa::class)->name('empresas.create');
@@ -89,8 +96,10 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('contadores/{contador}/edit', EditContador::class)->name('contadores.edit');
     Route::get('contadores/create', CreateContador::class)->name('contadores.create');
 
-    Route::get('atividades', Atividades::class)->name('atividades.index');
-    Route::get('atividades/{atividade}/edit', EditAtividade::class)->name('atividades.edit');
+    Route::get('lancamentos', Lancamentos::class)->name('lancamentos.index');
+    Route::get('lancamentos/{lancamento}/edit', EditLancamento::class)->name('lancamentos.edit');
+    Route::get('lancamentos/create', CreateLancamento::class)->name('lancamentos.create');
+    Route::get('lancamentos/dashboard', DashboardLancamentos::class)->name('lancamentos.dashboard');
 });
 
 //Admin only routes
