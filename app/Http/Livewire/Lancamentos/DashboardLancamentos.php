@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Lancamentos;
 use App\Http\Livewire\Base;
 use App\Models\Lancamento;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class DashboardLancamentos extends Base
 {
@@ -33,42 +34,32 @@ class DashboardLancamentos extends Base
         return Lancamento::orderBy("data_lancamento", 'asc');
     }
 
-    public function lancamentosIcms()
+    private function pegarLancamentosNaData(string $tipo, int $ano): Collection
     {
         $query = $this->builder();
-        $query = $query->where('tipo', 'M');
-        if ($this->ano) {
-            $primeiroDia = Carbon::createFromFormat("d/m/Y", "01/01/{$this->ano}");
-            $ultimoDia = Carbon::createFromFormat("d/m/Y", "31/12/{$this->ano}");
-            $query->whereBetween('data_lancamento', [$primeiroDia, $ultimoDia]);
-        }
+        $query = $query->where('tipo', $tipo);
+        $primeiroDia = Carbon::createFromFormat("d/m/Y", "01/01/{$ano}");
+        $ultimoDia = Carbon::createFromFormat("d/m/Y", "31/12/{$ano}");
+        $query->whereBetween('data_lancamento', [$primeiroDia, $ultimoDia]);
 
-        $dadosDB = $query->get();
+        return $query->get();
+    }
+
+    public function lancamentosIcms()
+    {
+        $dadosDB = $this->pegarLancamentosNaData('M', $this->ano);
         $lancamentos = [];
         foreach ($this->meses as $mes) {
             $dadosMes = $dadosDB->where(fn ($item) => $item->data_lancamento->format('Y-m-d') == $mes->format('Y-m-d'))->first();
-            if ($dadosMes) {
-                $lancamentoMes = [
-                    "mes" => "{$mes->format('m/Y')}",
-                    'data_lancamento'   => $dadosMes->data_lancamento,
-                    'valor_apurado'     => $dadosMes->valor_apurado,
-                    'valor_declarado'   => $dadosMes->valor_declardado,
-                    'valor_recolhido'   => $dadosMes->valor_recolhido,
-                    'resultado'         => $dadosMes->resultado,
-                    'tipo'              => 'M',
-                ];
-                // $lancamentoMes += $dadosMes;
-            } else {
-                $lancamentoMes = [
-                    "mes"               => $mes->format('m/Y'),
-                    'data_lancamento'   => $mes->format('m/Y'),
-                    'valor_apurado'     => 0,
-                    'valor_declarado'   => 0,
-                    'valor_recolhido'   => 0,
-                    'resultado'         => 0,
-                    'tipo'              => 'M',
-                ];
-            }
+            $lancamentoMes = [
+                "mes"               => $mes->format('m/Y'),
+                'data_lancamento'   => $mes->format('m/Y'),
+                'valor_apurado'     => $dadosMes ? $dadosMes->valor_apurado : 0,
+                'valor_declarado'   => $dadosMes ? $dadosMes->valor_declardado : 0,
+                'valor_recolhido'   => $dadosMes ? $dadosMes->valor_recolhido : 0,
+                'resultado'         => $dadosMes ? $dadosMes->resultado : 0,
+                'tipo'              => 'M',
+            ];
             $lancamentos[] = $lancamentoMes;
         }
         // dd($lancamentos);

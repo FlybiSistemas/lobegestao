@@ -25,10 +25,10 @@ class LancamentoController extends Controller
         $lancamento = [
             "empresa_id" => $empresa->id,
             "data_lancamento" => Carbon::createFromFormat("d/m/Y", "01/" . $dados['data_lancamento']),
-            // "valor_apurado" => $dados['valor_apurado'],
+            "valor_apurado" => $dados['valor_apurado'],
             "valor_declarado" => $dados['valor_declarado'],
-            // "valor_recolhido" => $dados['valor_recolhido'],
-            // "resultado" => $dados['valor_declarado'] - $dados['valor_recolhido'],
+            "valor_recolhido" => $dados['valor_recolhido'],
+            "resultado" => $dados['valor_declarado'] - $dados['valor_recolhido'],
             "tipo" => $dados['tipo'],
         ];
 
