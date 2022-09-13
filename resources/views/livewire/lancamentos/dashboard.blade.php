@@ -70,7 +70,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($this->lancamentosIcms() as $obj)
+                        @foreach ($this->lancamentosProtege() as $obj)
                             <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                                 <td class="p-2 text-center">{{ $obj['mes'] }}</td>
                                 <td class="p-2 text-right">{{ number_format($obj['valor_apurado'], 2, ',', '.') }}</td>
@@ -101,7 +101,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($this->lancamentosIcms() as $obj)
+                        @foreach ($this->lancamentosIpi() as $obj)
                             <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                                 <td class="p-2 text-center">{{ $obj['mes'] }}</td>
                                 <td class="p-2 text-right">{{ number_format($obj['valor_apurado'], 2, ',', '.') }}</td>
