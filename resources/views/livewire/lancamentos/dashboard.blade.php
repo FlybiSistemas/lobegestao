@@ -12,12 +12,9 @@
             </x-form.input>
         </div>
         <div class="col-span-2">
-            <x-form.select wire:model="tipo" label='none' name='tipo' placeholder="Tipo do lançamento">
-                <x-form.select-option value="M">ICMS</x-form.select-option>
-                <x-form.select-option value="I">IPI</x-form.select-option>
-                <x-form.select-option value="P">PROTEGE</x-form.select-option>
-                <x-form.select-option value="C">PIS/COFINS</x-form.select-option>
-            </x-form.select>
+            <x-form.input id="cnpj" name="cnpj" label="none" wire:model.lazy="cnpj"
+                placeholder="CNPJ da Empresa">
+            </x-form.input>
         </div>
 
     </div>
