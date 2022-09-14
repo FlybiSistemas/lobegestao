@@ -21,6 +21,18 @@
                             <td class="py-2 font-bold">RAZÃO SOCIAL:</td>
                             <td class="py-2">{{ $empresa->nome }}</td>
                         </tr>
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <td class="py-2 font-bold">FUNDAÇÃO DA EMPRESA:</td>
+                            <td class="py-2">
+                                {{ $empresa->data_abertura ? $empresa->data_abertura->format('d/m/Y') : '' }}
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <td class="py-2 font-bold">CLIENTE DESDE:</td>
+                            <td class="py-2">
+                                {{ $empresa->cliente_desde ? $empresa->cliente_desde->format('d/m/Y') : '' }}
+                            </td>
+                        </tr>
                         <tr class="bg-gray-50 border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="py-2 font-bold">CNPJ:</td>
                             <td class="py-2">{{ $empresa->cnpj }}</td>
@@ -75,6 +87,12 @@
                             <td class="py-2 font-bold">VAI EXPIRAR EM:</td>
                             <td class="py-2">
                                 {{ $empresa->certificado_validade ? $empresa->certificado_validade->diffForHumans() : '' }}
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <td class="py-2 font-bold">PARTICULARIDADES:</td>
+                            <td class="py-2">
+                                {{ $empresa->particularidades }}
                             </td>
                         </tr>
                     </table>

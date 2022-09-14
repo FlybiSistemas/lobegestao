@@ -42,9 +42,12 @@
                         @foreach ($this->lancamentosIcms() as $obj)
                             <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                                 <td class="p-2 text-center">{{ $obj['mes'] }}</td>
-                                <td class="p-2 text-right">{{ $obj['valor_apurado'] }}
+                                <td class="p-2 text-right">{{ number_format($obj['valor_apurado'], 2, ',', '.') }}</td>
+                                <td class="p-2 text-right">{{ number_format($obj['valor_declarado'], 2, ',', '.') }}
                                 </td>
-
+                                <td class="p-2 text-right">{{ number_format($obj['valor_recolhido'], 2, ',', '.') }}
+                                </td>
+                                <td class="p-2 text-right">{{ number_format($obj['resultado'], 2, ',', '.') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -67,16 +70,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($this->lancamentosIcms() as $obj)
+                        @foreach ($this->lancamentosProtege() as $obj)
                             <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
-                                <td class="p-2 text-center">{{ $obj->data_lancamento->format('m/Y') }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj->valor_apurado, 2, ',', '.') }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj->valor_declarado, 2, ',', '.') }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj->valor_recolhido, 2, ',', '.') }}</td>
-                                <td class="p-2 text-right @if ($obj->resultado < 0) text-red-800 @endif">
-                                    {{ number_format($obj->resultado, 2, ',', '.') }}
+                                <td class="p-2 text-center">{{ $obj['mes'] }}</td>
+                                <td class="p-2 text-right">{{ number_format($obj['valor_apurado'], 2, ',', '.') }}</td>
+                                <td class="p-2 text-right">{{ number_format($obj['valor_declarado'], 2, ',', '.') }}
                                 </td>
-
+                                <td class="p-2 text-right">{{ number_format($obj['valor_recolhido'], 2, ',', '.') }}
+                                </td>
+                                <td class="p-2 text-right">{{ number_format($obj['resultado'], 2, ',', '.') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -99,15 +101,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($this->lancamentosIcms() as $obj)
+                        @foreach ($this->lancamentosIpi() as $obj)
                             <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
-                                <td class="p-2 text-center">{{ $obj->data_lancamento->format('m/Y') }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj->valor_apurado, 2, ',', '.') }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj->valor_declarado, 2, ',', '.') }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj->valor_recolhido, 2, ',', '.') }}</td>
-                                <td class="p-2 text-right @if ($obj->resultado < 0) text-red-800 @endif">
-                                    {{ number_format($obj->resultado, 2, ',', '.') }}
+                                <td class="p-2 text-center">{{ $obj['mes'] }}</td>
+                                <td class="p-2 text-right">{{ number_format($obj['valor_apurado'], 2, ',', '.') }}</td>
+                                <td class="p-2 text-right">{{ number_format($obj['valor_declarado'], 2, ',', '.') }}
                                 </td>
+                                <td class="p-2 text-right">{{ number_format($obj['valor_recolhido'], 2, ',', '.') }}
+                                </td>
+                                <td class="p-2 text-right">{{ number_format($obj['resultado'], 2, ',', '.') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
