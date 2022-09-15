@@ -32,8 +32,16 @@ class LancamentoController extends Controller
             "tipo" => $dados['tipo'],
         ];
 
-        $lancamento = Lancamento::create($lancamento);
+        $valores = array_filter($lancamento, function ($value) {
+            return $value !== null;
+        });
 
+        $lancamento = Lancamento::updateOrCreate(
+            ['empresa_id' => $lancamento['empresa_id'],
+            'data_lancamento' => $lancamento['data_lancamento']->format('Y-m-d'),
+            'tipo' => $lancamento['tipo']
+        ], $valores);
+        
         return response()->json($lancamento, 200);
     }
 }
