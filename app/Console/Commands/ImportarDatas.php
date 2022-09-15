@@ -22,7 +22,7 @@ class ImportarDatas extends Command
     public function handle()
     {
         Log::info("Início da importação");
-        $file = "/home/carlos/Downloads/datas.csv";
+        $file = "/home/lobege28/lobegestao/datas.csv";
         $handleFile = fopen($file, "r");
         $linha = 0;
         try {
