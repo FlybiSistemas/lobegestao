@@ -55,7 +55,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <h4 class="mb-0 text-center">Certificados Vencendo esse mês</h4>
+            <h4 class="mb-0 text-center">Certificados Vencendo nos próximos 3 meses</h4>
         </div>
         <div class="card-body h-72 overflow-auto">
             <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400 border dark:border-gray-600">
