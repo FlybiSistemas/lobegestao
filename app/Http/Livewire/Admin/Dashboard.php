@@ -10,9 +10,10 @@ use Illuminate\Contracts\View\View;
 class Dashboard extends Base
 {
 
-    public $semana    = [];
-    public $mes       = [];
-    public $trimestre = [];
+    public $semana          = [];
+    public $mes             = [];
+    public $trimestre       = [];
+    public $aniversariantes = [];
 
     public function mount()
     {
@@ -27,6 +28,13 @@ class Dashboard extends Base
             ->where('certificado_validade', '>', Carbon::now()->addDays(7)->format('Y-m-d'));
         $this->mes = $dados->where('certificado_validade', '>', Carbon::now()->addMonth()->format('Y-m-d'))
             ->where('certificado_validade', '<', $dataAviso->format('Y-m-d'));
+
+
+        $inicio = Carbon::now()->subDays(5);
+        $fim = Carbon::now()->addDays(30);
+        $queryAniv = Empresa::orderByRaw("date_format(data_abertura, '%m-%d') asc")
+            ->whereRaw("date_format(data_abertura, '%m-%d') between '" . $inicio->format('m-d') . "' and '" . $fim->format('m-d') . "'");
+        $this->aniversariantes = $queryAniv->get();
     }
 
     public function render(): View
