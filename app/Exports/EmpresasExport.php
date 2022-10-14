@@ -22,7 +22,7 @@ class EmpresasExport implements FromCollection, WithHeadings
             ->with('grupo')
             ->get();
 
-        $empresas = $dados->map(function ($empresa){
+        return $dados->map(function ($empresa) {
             return [
                 'Razão Social' => $empresa->nome,
                 'Fundação' => $empresa->fundacao,
@@ -31,9 +31,9 @@ class EmpresasExport implements FromCollection, WithHeadings
                 'Endereço' => $empresa->logradouro,
                 'Cidade' => $empresa->cidade,
                 'Estado' => $empresa->estado,
-                'Grupo' => $empresa->grupo->nome,
-                'Departamento' => $empresa->departamento->nome,
-                'Atividade' => $empresa->atividade->nome,
+                'Grupo' => $empresa->grupo ? $empresa->grupo->nome : '',
+                'Departamento' => $empresa->departamento ? $empresa->departamento->nome : '',
+                'Atividade' => $empresa->atividade ? $empresa->atividade->nome : '',
                 'Responsável DP' => $empresa->responsavel_departamento_pessoal,
                 'Regime Tributário' => $empresa->regime_tributario,
                 'Regime Apuração' => $empresa->periodo_apuracao,
@@ -58,8 +58,6 @@ class EmpresasExport implements FromCollection, WithHeadings
                 'Inscrição Estadua' => $empresa->sefaz_ie,
             ];
         });
-
-        
     }
 
     public function headings(): array

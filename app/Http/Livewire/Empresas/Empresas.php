@@ -70,6 +70,6 @@ class Empresas extends Base
 
     public function exportar()
     {
-        return (new EmpresasExport($this->empresas()))->download('empresas.csv');
+        return (new EmpresasExport)->download('empresas.csv');
     }
 }
