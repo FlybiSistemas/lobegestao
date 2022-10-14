@@ -4,6 +4,7 @@
         <h1>Contadores</h1>
         <div>
             <livewire:contadores.create-contador />
+            <button class="btn btn-green-700" wire:click="exportar">Exportar</button>
         </div>
     </div>
 

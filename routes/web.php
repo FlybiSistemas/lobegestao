@@ -95,6 +95,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('contadores', Contadores::class)->name('contadores.index');
     Route::get('contadores/{contador}/edit', EditContador::class)->name('contadores.edit');
     Route::get('contadores/create', CreateContador::class)->name('contadores.create');
+    Route::get('contadores/exportar', Contadores::class)->name('contadores.exportar');
 
     Route::get('lancamentos', Lancamentos::class)->name('lancamentos.index');
     Route::get('lancamentos/{lancamento}/edit', EditLancamento::class)->name('lancamentos.edit');

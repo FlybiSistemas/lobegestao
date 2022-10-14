@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Empresas;
 
+use App\Exports\EmpresasExport;
 use App\Http\Livewire\Base;
 use App\Models\Empresa;
 use Livewire\WithPagination;
@@ -65,5 +66,10 @@ class Empresas extends Base
     {
         $this->builder()->findOrFail($id)->delete();
         $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function exportar()
+    {
+        return (new EmpresasExport($this->empresas()))->download('empresas.csv');
     }
 }

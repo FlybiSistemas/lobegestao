@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Contadores;
 
+use App\Exports\ContadoresExport;
 use App\Http\Livewire\Base;
 use App\Models\Contador;
 use Livewire\WithPagination;
@@ -58,5 +59,10 @@ class Contadores extends Base
     {
         $this->builder()->findOrFail($id)->delete();
         $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function exportar()
+    {
+        return (new ContadoresExport())->download('contadores.csv');
     }
 }

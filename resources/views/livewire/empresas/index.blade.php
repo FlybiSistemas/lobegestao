@@ -4,6 +4,7 @@
         <h1>Empresas</h1>
         <div>
             <a class="btn btn-primary" href="{{ route('empresas.create') }}">Adicionar Empresa</a>
+            <button class="btn btn-green-700" wire:click="exportar">Exportar</button>
         </div>
     </div>
 
