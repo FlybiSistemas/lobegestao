@@ -70,6 +70,6 @@ class Empresas extends Base
 
     public function exportar()
     {
-        return (new EmpresasExport)->download('empresas.xlsx');
+        return (new EmpresasExport)->download('empresas.csv');
     }
 }
