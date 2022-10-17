@@ -10,8 +10,10 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class EmpresasExport implements FromCollection, WithHeadings
+class EmpresasExport implements FromCollection, WithHeadings, WithStyles
 {
     use Exportable;
     private $writerType = Excel::CSV;
@@ -64,7 +66,7 @@ class EmpresasExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return [
+        $itens = [
             'Razão Social',
             'Fundação',
             'Cliente desde',
@@ -97,6 +99,29 @@ class EmpresasExport implements FromCollection, WithHeadings
             'Estado SEFAZ',
             'Contador SEFAZ',
             'Inscrição Estadual'
+        ];
+
+        return array_map('strtoupper', $itens);
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1 => [
+                'font' => [
+                    'bold' => true,
+                    'size' => 13,
+                    'color' => ['argb' => 'FFFFFFFF'],
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'color' => ['argb' => 'FF3010CE'],
+                ],
+            ],
         ];
     }
 }
