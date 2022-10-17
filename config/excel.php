@@ -48,7 +48,7 @@ return [
             'use_bom'                => false,
             'include_separator_line' => false,
             'excel_compatibility'    => false,
-            'output_encoding'        => 'ANSI',
+            'output_encoding'        => 'UTF-8',
         ],
 
         /*
