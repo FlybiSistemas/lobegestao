@@ -25,9 +25,9 @@ class EmpresasExport implements FromCollection, WithHeadings
         return $dados->map(function ($empresa) {
             return [
                 'Razão Social' => $empresa->nome,
-                'Fundação' => $empresa->fundacao,
-                'Cliente desde' => $empresa->created_at,
-                'CNPJ' => $empresa->cnpj,
+                'Fundação' => $empresa->data_abertura,
+                'Cliente desde' => $empresa->cliente_desde,
+                'CNPJ' => "'".$empresa->cnpj,
                 'Endereço' => $empresa->logradouro,
                 'Cidade' => $empresa->cidade,
                 'Estado' => $empresa->estado,
@@ -35,8 +35,8 @@ class EmpresasExport implements FromCollection, WithHeadings
                 'Departamento' => $empresa->departamento ? $empresa->departamento->nome : '',
                 'Atividade' => $empresa->atividade ? $empresa->atividade->nome : '',
                 'Responsável DP' => $empresa->responsavel_departamento_pessoal,
-                'Regime Tributário' => $empresa->regime_tributario,
-                'Regime Apuração' => $empresa->periodo_apuracao,
+                'Regime Tributário' => App\Helpers\RegimeTributarioHelper::get($empresa->regime_tributario),
+                'Regime Apuração' => App\Helpers\RegimeApuracaoHelper::get($empresa->periodo_apuracao),
                 'Validade Certificado' => $empresa->certificado_validade,
                 'Contato Fiscal' => $empresa->email_fiscal,
                 'Contato Contábil' => $empresa->email_contabil,
