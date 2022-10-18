@@ -16,7 +16,6 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 class EmpresasExport implements FromCollection, WithHeadings, WithStyles
 {
     use Exportable;
-    private $writerType = Excel::CSV;
 
     public function collection()
     {
@@ -66,7 +65,7 @@ class EmpresasExport implements FromCollection, WithHeadings, WithStyles
 
     public function headings(): array
     {
-        $itens = [
+        return [
             'Razão Social',
             'Fundação',
             'Cliente desde',
@@ -100,8 +99,6 @@ class EmpresasExport implements FromCollection, WithHeadings, WithStyles
             'Contador SEFAZ',
             'Inscrição Estadual'
         ];
-
-        return array_map('strtoupper', $itens);
     }
 
     public function styles(Worksheet $sheet)
@@ -110,7 +107,7 @@ class EmpresasExport implements FromCollection, WithHeadings, WithStyles
             1 => [
                 'font' => [
                     'bold' => true,
-                    'size' => 13,
+                    'size' => 12,
                     'color' => ['argb' => 'FFFFFFFF'],
                 ],
                 'alignment' => [
@@ -119,8 +116,9 @@ class EmpresasExport implements FromCollection, WithHeadings, WithStyles
                 ],
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FF3010CE'],
+                    'color' => ['argb' => 'FF002060'],
                 ],
+                'autoSize' => true,
             ],
         ];
     }
