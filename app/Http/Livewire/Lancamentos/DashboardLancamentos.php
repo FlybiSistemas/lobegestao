@@ -122,6 +122,48 @@ class DashboardLancamentos extends Base
         return $lancamentos;
     }
 
+    public function lancamentosPis()
+    {
+        $dadosDB = $this->pegarLancamentosNaData('S', $this->ano);
+        $lancamentos = [];
+        foreach ($this->meses as $mes) {
+            $dadosMes = $dadosDB->where(fn ($item) => $item->data_lancamento->format('Y-m-d') == $mes->format('Y-m-d'))->first();
+            $lancamentoMes = [
+                "mes"               => $mes->format('m/Y'),
+                'data_lancamento'   => $mes->format('m/Y'),
+                'valor_apurado'     => $dadosMes ? $dadosMes->valor_apurado : 0,
+                'valor_declarado'   => $dadosMes ? $dadosMes->valor_declarado : 0,
+                'valor_recolhido'   => $dadosMes ? $dadosMes->valor_recolhido : 0,
+                'resultado'         => $dadosMes ? $dadosMes->resultado : 0,
+                'tipo'              => 'M',
+            ];
+            $lancamentos[] = $lancamentoMes;
+        }
+        // dd($lancamentos);
+        return $lancamentos;
+    }
+
+    public function lancamentosCofins()
+    {
+        $dadosDB = $this->pegarLancamentosNaData('C', $this->ano);
+        $lancamentos = [];
+        foreach ($this->meses as $mes) {
+            $dadosMes = $dadosDB->where(fn ($item) => $item->data_lancamento->format('Y-m-d') == $mes->format('Y-m-d'))->first();
+            $lancamentoMes = [
+                "mes"               => $mes->format('m/Y'),
+                'data_lancamento'   => $mes->format('m/Y'),
+                'valor_apurado'     => $dadosMes ? $dadosMes->valor_apurado : 0,
+                'valor_declarado'   => $dadosMes ? $dadosMes->valor_declarado : 0,
+                'valor_recolhido'   => $dadosMes ? $dadosMes->valor_recolhido : 0,
+                'resultado'         => $dadosMes ? $dadosMes->resultado : 0,
+                'tipo'              => 'M',
+            ];
+            $lancamentos[] = $lancamentoMes;
+        }
+        // dd($lancamentos);
+        return $lancamentos;
+    }
+
     public function resetFilters(): void
     {
         $this->reset();

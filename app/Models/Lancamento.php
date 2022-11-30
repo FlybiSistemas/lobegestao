@@ -46,6 +46,11 @@ class Lancamento extends Model
         if ($this->tipo == "P") {
             return "PROTEGE";
         }
-        return "PIS/COFINS";
+        if ($this->tipo == "S") {
+            return "PIS";
+        }
+        if ($this->tipo == "C") {
+            return "COFINS";
+        }
     }
 }
