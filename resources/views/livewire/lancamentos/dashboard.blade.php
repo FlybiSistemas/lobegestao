@@ -29,7 +29,6 @@
                     <thead>
                         <tr>
                             <th class="text-center leading-3">COMP.</th>
-                            <th class="text-center leading-3">Apurado</th>
                             <th class="text-center leading-3">Declarado</th>
                             <th class="text-center leading-3">Recolhido</th>
                             <th class="bg-orange-600 text-white leading-3">Resultado</th>
@@ -39,7 +38,6 @@
                         @foreach ($this->lancamentosIcms() as $obj)
                             <tr class="bg-gray-50 dark:bg-gray-600 dark:border-gray-800">
                                 <td class="p-2 text-center">{{ $obj['mes'] }}</td>
-                                <td class="p-2 text-right">{{ number_format($obj['valor_apurado'], 2, ',', '.') }}</td>
                                 <td class="p-2 text-right">{{ number_format($obj['valor_declarado'], 2, ',', '.') }}
                                 </td>
                                 <td class="p-2 text-right">{{ number_format($obj['valor_recolhido'], 2, ',', '.') }}

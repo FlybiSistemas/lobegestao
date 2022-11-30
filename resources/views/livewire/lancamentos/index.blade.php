@@ -33,7 +33,6 @@
                     <th>Empresa</th>
                     <th>Tipo</th>
                     <th><a href="#" wire:click.prevent="sortBy('data_lancamento')">Data</a></th>
-                    <th>Valor Apurado</th>
                     <th>Valor Declarado</th>
                     <th>Valor Recolhido</th>
                     <th>Resultado</th>
@@ -51,7 +50,6 @@
                         </td>
                         <td class="p-2">{{ $obj->tipoLancamento() }}</td>
                         <td class="p-2">{{ $obj->data_lancamento->format('m/Y') }}</td>
-                        <td class="p-2">{{ number_format($obj->valor_apurado, 2, ',', '.') }}</td>
                         <td class="p-2">{{ number_format($obj->valor_declarado, 2, ',', '.') }}</td>
                         <td class="p-2">{{ number_format($obj->valor_recolhido, 2, ',', '.') }}</td>
                         <td class="p-2 @if ($obj->resultado < 0) text-red-800 @endif">
