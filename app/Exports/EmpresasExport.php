@@ -2,17 +2,20 @@
 
 namespace App\Exports;
 
+use App\Helpers\RegimeApuracaoHelper;
+use App\Helpers\RegimeTributarioHelper;
 use App\Models\Empresa;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class EmpresasExport implements FromCollection, WithHeadings
+class EmpresasExport implements FromCollection, WithHeadings, WithStyles
 {
     use Exportable;
-    private $writerType = Excel::CSV;
 
     public function collection()
     {
@@ -25,9 +28,9 @@ class EmpresasExport implements FromCollection, WithHeadings
         return $dados->map(function ($empresa) {
             return [
                 'Razão Social' => $empresa->nome,
-                'Fundação' => $empresa->fundacao,
-                'Cliente desde' => $empresa->created_at,
-                'CNPJ' => $empresa->cnpj,
+                'Fundação' => $empresa->data_abertura,
+                'Cliente desde' => $empresa->cliente_desde,
+                'CNPJ' => "'".$empresa->cnpj,
                 'Endereço' => $empresa->logradouro,
                 'Cidade' => $empresa->cidade,
                 'Estado' => $empresa->estado,
@@ -35,8 +38,8 @@ class EmpresasExport implements FromCollection, WithHeadings
                 'Departamento' => $empresa->departamento ? $empresa->departamento->nome : '',
                 'Atividade' => $empresa->atividade ? $empresa->atividade->nome : '',
                 'Responsável DP' => $empresa->responsavel_departamento_pessoal,
-                'Regime Tributário' => $empresa->regime_tributario,
-                'Regime Apuração' => $empresa->periodo_apuracao,
+                'Regime Tributário' => $empresa->regime_tributario != '' ? RegimeTributarioHelper::get($empresa->regime_tributario) : '',
+                'Regime Apuração' => $empresa->periodo_apuracao != '' ? RegimeApuracaoHelper::get($empresa->periodo_apuracao) : '',
                 'Validade Certificado' => $empresa->certificado_validade,
                 'Contato Fiscal' => $empresa->email_fiscal,
                 'Contato Contábil' => $empresa->email_contabil,
@@ -95,6 +98,28 @@ class EmpresasExport implements FromCollection, WithHeadings
             'Estado SEFAZ',
             'Contador SEFAZ',
             'Inscrição Estadual'
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1 => [
+                'font' => [
+                    'bold' => true,
+                    'size' => 12,
+                    'color' => ['argb' => 'FFFFFFFF'],
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'color' => ['argb' => 'FF002060'],
+                ],
+                'autoSize' => true,
+            ],
         ];
     }
 }
