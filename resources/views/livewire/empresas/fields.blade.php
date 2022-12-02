@@ -300,3 +300,33 @@
         </div>
     </div>
 </div>
+<div>
+    <x-2col>
+        <x-slot name="left">
+            <h3>Integração Receitanet BX</h3>
+            <p>Consultar informações do SPED e comparar com o que foi recolhido.</p>
+        </x-slot>
+        <x-slot name="right">
+
+            <div class="card">
+                <x-form wire:submit.prevent="update" method="put">
+
+                    <p><input type="checkbox" wire:model="bot_icms" value="">
+                        <span class="ml-1">
+                        ICMS
+                        </span>
+                    </p>
+                    
+                    <p><input type="checkbox" wire:model="bot_pis_cofins" value="">
+                        <span class="ml-1">
+                        PIS COFINS
+                        </span>
+                    </p>
+
+                </x-form>
+            </div>
+
+        </x-slot>
+    </x-2col>
+
+</div>

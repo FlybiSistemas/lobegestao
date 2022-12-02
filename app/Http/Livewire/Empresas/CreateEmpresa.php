@@ -63,6 +63,8 @@ class CreateEmpresa extends Base
     public $cliente_desde = '';
     public $cliente_ate = '';
     public $particularidades = '';
+    public $bot_icms = false;
+    public $bot_pis_cofins = false;
 
     public $grupos = [];
     public $departamentos = [];
@@ -154,6 +156,8 @@ class CreateEmpresa extends Base
             'cliente_ate' => $this->cliente_ate ? Carbon::createFromFormat("d/m/Y", $this->cliente_ate) : null,
             'data_abertura' => $this->data_abertura ? Carbon::createFromFormat("d/m/Y", $this->data_abertura) : null,
             'particularidades' => $this->particularidades,
+            'bot_icms' => $this->bot_icms,
+            'bot_icms' => $this->bot_pis_cofins
         ]);
         flash('Empresa criado')->success();
         return redirect()->route('empresas.index');

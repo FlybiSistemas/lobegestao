@@ -64,6 +64,8 @@ class EditEmpresa extends Base
     public $cliente_desde = '';
     public $cliente_ate = '';
     public $particularidades = '';
+    public $bot_icms = false;
+    public $bot_pis_cofins = false;
 
     public $grupos = [];
     public $departamentos = [];
@@ -156,6 +158,7 @@ class EditEmpresa extends Base
 
     public function update(): Redirector|RedirectResponse
     {
+        dd('teste');
         $this->validate();
 
         $this->empresa->nome  = mb_strtoupper($this->nome);
@@ -197,6 +200,8 @@ class EditEmpresa extends Base
         $this->empresa->cliente_desde = $this->cliente_desde ? Carbon::createFromFormat("d/m/Y", $this->cliente_desde) : null;
         $this->empresa->cliente_ate = $this->cliente_ate ? Carbon::createFromFormat("d/m/Y", $this->cliente_ate) : null;
         $this->empresa->particularidades = $this->particularidades;
+        $this->empresa->bot_icms = $this->bot_icms;
+        $this->empresa->bot_pis_cofins = $this->bot_pis_cofins;
         $this->empresa->save();
         flash('Empresa atualizado')->success();
         return redirect()->route('empresas.index');

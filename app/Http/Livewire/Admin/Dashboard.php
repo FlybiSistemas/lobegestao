@@ -32,11 +32,11 @@ class Dashboard extends Base
 
         $inicio = Carbon::now()->subDays(5);
         $fim = Carbon::now()->addDays(30);
-        $queryAniv = Empresa::orderByRaw("date_format(data_abertura, '%m-%d') asc")
-            ->whereRaw("date_format(data_abertura, '%m-%d') between '" . $inicio->format('m-d') . "' and '" . $fim->format('m-d') . "'");
+        // $queryAniv = Empresa::orderByRaw("date_format(data_abertura, '%m-%d') asc")
+        //     ->whereRaw("date_format(data_abertura, '%m-%d') between '" . $inicio->format('m-d') . "' and '" . $fim->format('m-d') . "'");
         // pgsql
-        // $queryAniv = Empresa::orderByRaw("to_char(data_abertura, 'MM-DD') asc")
-        //     ->whereRaw("to_char(data_abertura, 'MM-DD') between '" . $inicio->format('m-d') . "' and '" . $fim->format('m-d') . "'");
+        $queryAniv = Empresa::orderByRaw("to_char(data_abertura, 'MM-DD') asc")
+            ->whereRaw("to_char(data_abertura, 'MM-DD') between '" . $inicio->format('m-d') . "' and '" . $fim->format('m-d') . "'");
         $this->aniversariantes = $queryAniv->get();
     }
 
