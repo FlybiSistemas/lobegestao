@@ -144,6 +144,8 @@ class EditEmpresa extends Base
         $this->data_abertura = $this->empresa->data_abertura ? $this->empresa->data_abertura->format('d/m/Y') : '';
         $this->cliente_desde = $this->empresa->cliente_desde ? $this->empresa->cliente_desde->format('d/m/Y') : '';
         $this->cliente_ate = $this->empresa->cliente_ate ? $this->empresa->cliente_ate->format('d/m/Y') : '';
+        $this->bot_icms = $this->empresa->bot_icms;
+        $this->bot_pis_cofins = $this->empresa->bot_pis_cofins;
 
         $this->grupo_id = $this->empresa->grupo_id ?? '';
         $this->departamento_id = $this->empresa->departamento_id ?? '';
@@ -158,7 +160,6 @@ class EditEmpresa extends Base
 
     public function update(): Redirector|RedirectResponse
     {
-        dd('teste');
         $this->validate();
 
         $this->empresa->nome  = mb_strtoupper($this->nome);

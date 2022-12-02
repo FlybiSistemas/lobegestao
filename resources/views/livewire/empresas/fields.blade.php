@@ -309,21 +309,19 @@
         <x-slot name="right">
 
             <div class="card">
-                <x-form wire:submit.prevent="update" method="put">
 
-                    <p><input type="checkbox" wire:model="bot_icms" value="">
-                        <span class="ml-1">
-                        ICMS
-                        </span>
-                    </p>
-                    
-                    <p><input type="checkbox" wire:model="bot_pis_cofins" value="">
-                        <span class="ml-1">
-                        PIS COFINS
-                        </span>
-                    </p>
+                <p><input type="checkbox" wire:model="bot_icms">
+                    <span class="ml-1">
+                    ICMS
+                    </span>
+                </p>
+                
+                <p><input type="checkbox" wire:model="bot_pis_cofins">
+                    <span class="ml-1">
+                    PIS COFINS
+                    </span>
+                </p>
 
-                </x-form>
             </div>
 
         </x-slot>
