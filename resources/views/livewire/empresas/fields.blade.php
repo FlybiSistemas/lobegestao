@@ -142,6 +142,21 @@
     </div>
     <div class="row grid grid-cols-12 gap-4">
         <div class="col-span-4">
+            <x-form.input type="text" wire:model="nome_contato" label='Nome do Contato' name='nome_contato'>
+            </x-form.input>
+        </div>
+        <div class="col-span-4">
+            <x-form.input type="number" wire:model="primeiro_contato" label='Contato' name='primeiro_contato'>
+            </x-form.input>
+        </div>
+        <div class="col-span-4">
+            <x-form.input type="number" wire:model="segundo_contato" label='Contato'
+                name='segundo_contato'>
+            </x-form.input>
+        </div>
+    </div>
+    <div class="row grid grid-cols-12 gap-4">
+        <div class="col-span-4">
             <x-form.input type="email" wire:model="email_fiscal" label='E-mail Fiscal' name='email_fiscal'>
             </x-form.input>
         </div>

@@ -34,6 +34,9 @@ class CreateEmpresa extends Base
     public $bairro = '';
     public $cidade = '';
     public $estado = '';
+    public $nome_contato = '';
+    public $primeiro_contato = '';
+    public $segundo_contato = '';
     public $email_fiscal = '';
     public $email_contabil = '';
     public $email_financeiro = '';
@@ -127,6 +130,9 @@ class CreateEmpresa extends Base
             'bairro' => $this->bairro,
             'cidade' => $this->cidade,
             'estado' => $this->estado,
+            'nome_contato' => $this->nome_contato,
+            'primeiro_contato' => $this->primeiro_contato,
+            'segundo_contato' => $this->segundo_contato,
             'email_fiscal' => $this->email_fiscal,
             'email_contabil' => $this->email_contabil,
             'email_financeiro' => $this->email_financeiro,

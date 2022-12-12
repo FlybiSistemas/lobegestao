@@ -35,6 +35,9 @@ class EditEmpresa extends Base
     public $bairro = '';
     public $cidade = '';
     public $estado = '';
+    public $nome_contato = '';
+    public $primeiro_contato = '';
+    public $segundo_contato = '';
     public $email_fiscal = '';
     public $email_contabil = '';
     public $email_financeiro = '';
@@ -119,6 +122,9 @@ class EditEmpresa extends Base
         $this->bairro = $this->empresa->bairro ?? '';
         $this->cidade = $this->empresa->cidade ?? '';
         $this->estado = $this->empresa->estado ?? '';
+        $this->nome_contato = $this->empresa->nome_contato ?? '';
+        $this->primeiro_contato = $this->empresa->primeiro_contato ?? '';
+        $this->segundo_contato = $this->empresa->segundo_contato ?? '';
         $this->email_fiscal = $this->empresa->email_fiscal ?? '';
         $this->email_contabil = $this->empresa->email_contabil ?? '';
         $this->email_financeiro = $this->empresa->email_financeiro ?? '';
@@ -173,6 +179,9 @@ class EditEmpresa extends Base
         $this->empresa->bairro = $this->bairro;
         $this->empresa->cidade = $this->cidade;
         $this->empresa->estado = $this->estado;
+        $this->empresa->nome_contato = $this->nome_contato;
+        $this->empresa->primeiro_contato = $this->primeiro_contato;
+        $this->empresa->segundo_contato = $this->segundo_contato;
         $this->empresa->email_fiscal = $this->email_fiscal;
         $this->empresa->email_contabil = $this->email_contabil;
         $this->empresa->email_financeiro = $this->email_financeiro;
